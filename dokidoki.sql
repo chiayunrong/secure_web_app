@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 08, 2018 at 08:11 AM
--- Server version: 10.1.28-MariaDB
--- PHP Version: 7.1.11
+-- Generation Time: Feb 08, 2018 at 08:47 AM
+-- Server version: 10.1.30-MariaDB
+-- PHP Version: 7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -68,6 +68,7 @@ CREATE TABLE `itemsincart` (
 CREATE TABLE `product` (
   `productid` int(15) NOT NULL,
   `productname` varchar(50) DEFAULT NULL,
+  `description` varchar(500) NOT NULL,
   `unitprice` decimal(5,2) DEFAULT NULL,
   `stock` int(15) DEFAULT NULL,
   `promotion` decimal(5,2) DEFAULT NULL
@@ -77,10 +78,10 @@ CREATE TABLE `product` (
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`productid`, `productname`, `unitprice`, `stock`, `promotion`) VALUES
-(1, 'Black Beads (1000/pack)', '1.00', 100, '100.00'),
-(2, 'White Beads (1000/pack)', '1.50', 250, '100.00'),
-(3, 'Orange Beads (1000/pack)', '1.29', 120, '100.00');
+INSERT INTO `product` (`productid`, `productname`, `description`, `unitprice`, `stock`, `promotion`) VALUES
+(1, 'Black Beads (1000/pack)', '', '1.00', 100, '100.00'),
+(2, 'White Beads (1000/pack)', '', '1.50', 250, '100.00'),
+(3, 'Orange Beads (1000/pack)', '', '1.29', 120, '100.00');
 
 -- --------------------------------------------------------
 
