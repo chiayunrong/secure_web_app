@@ -20,6 +20,7 @@ $User=$_SESSION['login_user'];
   <a href="profile.php">Profile</a>
 </div>
 
+<center><a href = "logout.php" title = "Logout">Logout</a></center>
 
 
 <br>
