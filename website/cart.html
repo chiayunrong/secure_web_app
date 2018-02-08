@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cart</title>
+</head>
+</html>
+<body>
+<h1>Doki Doki</h1>      
+
+<a href="logout.php">Logout</a> <br>
+
+<a href="home_page_manager.html">Home</a> <a href="cart.html">Cart</a> <a href="profile.html">Profile</a> 
+
+<h3>My Cart</h3>
+
+    <table style="width:50%">
+        <tr>
+          <th>Item Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+        </tr>
+        <tr>
+          <td>Black Beads</td>
+          <td>$1</td>
+          <td>99</td>
+        </tr>
+      </table> 
+
+    <form action="shipping.php" method="POST">
+            <input type="radio" name="shipping_method" value="cash_on_delivery"> Cash on Delivery<br>
+            <input type="radio" name="shipping_method" value="self_pickup"> Self-Pickup<br>
+    </form>
+
+</body>
+
+<!- 
+https://www.sitepoint.com/community/t/how-to-display-data-from-a-database-into-a-html-table/241123/5 
+https://stackoverflow.com/questions/12209438/logout-button-php/12209491
+->
