@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 08, 2018 at 03:41 PM
--- Server version: 10.1.30-MariaDB
--- PHP Version: 7.2.1
+-- Generation Time: Feb 08, 2018 at 04:31 PM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 7.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,52 +19,58 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `dokidoki`
+-- Database: `admin`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product`
+-- Table structure for table `useraccount`
 --
 
-CREATE TABLE `product` (
-  `productid` int(15) NOT NULL,
-  `productname` varchar(50) DEFAULT NULL,
-  `description` varchar(500) NOT NULL,
-  `unitprice` decimal(5,2) DEFAULT NULL,
-  `stock` int(15) DEFAULT NULL,
-  `promotion` decimal(5,2) DEFAULT NULL
+CREATE TABLE `useraccount` (
+  `userid` int(15) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `contact` int(8) NOT NULL,
+  `role` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `address1` varchar(50) NOT NULL,
+  `address2` varchar(50) NOT NULL,
+  `city` varchar(50) NOT NULL,
+  `state` varchar(50) NOT NULL,
+  `postalcode` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `product`
+-- Dumping data for table `useraccount`
 --
 
-INSERT INTO `product` (`productid`, `productname`, `description`, `unitprice`, `stock`, `promotion`) VALUES
-(1, 'Black Beads (1000/pack)', 'abc desc', '1.00', 100, '100.00'),
-(2, 'White Beads (1000/pack)', 'cdas desc', '1.50', 250, '100.00'),
-(3, 'Orange Beads (1000/pack)', 'adscs desc', '1.29', 120, '100.00');
+INSERT INTO `useraccount` (`userid`, `username`, `password`, `name`, `contact`, `role`, `email`, `address1`, `address2`, `city`, `state`, `postalcode`) VALUES
+(1, 'testuser1', 'cisco123', 'dryap', 91234567, 'user', 'cny@gmail.com', 'Tampines', 'Tampines', 'Singapore', 'Singapore', 555555),
+(100, 'Admin', 'Password', 'Administrator', 88877766, 'Admin', 'admin123@gmail.com', 'Bedok', 'Bedok', 'SIngapore', 'Singapore', 1234);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `product`
+-- Indexes for table `useraccount`
 --
-ALTER TABLE `product`
-  ADD PRIMARY KEY (`productid`);
+ALTER TABLE `useraccount`
+  ADD PRIMARY KEY (`userid`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `product`
+-- AUTO_INCREMENT for table `useraccount`
 --
-ALTER TABLE `product`
-  MODIFY `productid` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `useraccount`
+  MODIFY `userid` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
