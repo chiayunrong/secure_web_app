@@ -15,7 +15,7 @@ $result = mysqli_query($con, 'SELECT * FROM product');
 
 <br>
 
-<a href="cart.php">Home</a>
+<a href="home.php">Home</a>
 <a href="cart.php">Cart</a>
 <a href="profile.php">Profile</a>
 
