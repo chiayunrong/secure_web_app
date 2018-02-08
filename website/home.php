@@ -9,8 +9,8 @@ if(!isset($_SESSION['login_user'])) //check if you are in a session, if not redi
 }
 $User=$_SESSION['login_user'];
 
-include("connect.php");
-$sql = $con->query("SELECT * FROM `product`");
+require 'connect.php';
+$result = mysqli_query($con, 'SELECT * FROM product');
 ?>
 
 <br>
@@ -20,46 +20,28 @@ $sql = $con->query("SELECT * FROM `product`");
 <a href="profile.php">Profile</a>
 
 <center><a href = "logout.php" title = "Logout">Logout</a></center>
-
-
 <br>
 
-	<h1><left>Welcome <?php echo $User; ?>!</left></h1>
-	<hr>
-
-	<b><center>Products</center></b>
-
-	<table>
-    <thead>
+<table cellpadding="2" cellspacing="2" border="0">
+    <tr>
+        <th>Product ID</th>
+        <th>Item Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Promotion</th>
+    </tr>
+    <?php while($product = mysqli_fetch_object($result)) {?>
         <tr>
-            <th>Item Name</th>
-            <th>Description</th>
-			<th>Price</th>
-			<th>Stock</th>
-			<th>Promotion</th>
-			<th>Quantity</th>
+            <td><?php echo $product->productid; ?></td>
+            <td><?php echo $product->productname; ?></td>
+            <td><?php echo $product->description; ?></td>
+            <td><?php echo $product->unitprice; ?></td>
+            <td><?php echo $product->stock; ?></td>
+            <td><?php echo $product->promotion; ?></td>
+			<td><a href="cart.php?productid=<?php echo $product->productid;?>">Add to Cart</a></td>
         </tr>
-    </thead>
-    <tbody>
-		<?php while($row = $sql->fetch_assoc()) : ?>
-        <tr>
-            <td><?php echo $row['productname']; ?></td>
-            <td><?php echo $row['description']; ?></td>
-			<td><?php echo $row['unitprice']; ?></td>
-			<td><?php echo $row['stock']; ?></td>
-			<td><?php echo $row['promotion']; ?></td>
-			<td> <form action="POST"><input type='text' name='add_to_cart'/><input type='submit' value='Add to Cart'/> </form> </td>
-		</tr>
-        <?php endwhile ?>
-    </tbody>
-	</table>
-
-
-<?php
-include("connect.php");
-?>
+	<?php } ?>
 
 </body>
 </html>
-
-<?php
