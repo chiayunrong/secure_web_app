@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 07, 2018 at 09:38 AM
--- Server version: 10.1.30-MariaDB
--- PHP Version: 7.2.1
+-- Generation Time: Feb 08, 2018 at 08:11 AM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 7.1.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -30,9 +30,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `auditlog` (
   `entrynum` int(15) NOT NULL,
-  `timestamp` date NOT NULL,
-  `entry` varchar(50) NOT NULL,
-  `comments` varchar(500) NOT NULL
+  `timestamp` date DEFAULT NULL,
+  `entry` varchar(50) DEFAULT NULL,
+  `comments` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -43,8 +43,8 @@ CREATE TABLE `auditlog` (
 
 CREATE TABLE `cart` (
   `cartid` int(15) NOT NULL,
-  `shippingid` int(15) NOT NULL,
-  `userid` int(15) NOT NULL
+  `shippingid` int(15) DEFAULT NULL,
+  `userid` int(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -54,9 +54,9 @@ CREATE TABLE `cart` (
 --
 
 CREATE TABLE `itemsincart` (
-  `productid` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `cartid` int(11) NOT NULL
+  `productid` int(11) DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `cartid` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -67,10 +67,10 @@ CREATE TABLE `itemsincart` (
 
 CREATE TABLE `product` (
   `productid` int(15) NOT NULL,
-  `productname` varchar(50) NOT NULL,
-  `unitprice` decimal(5,2) NOT NULL,
-  `stock` int(15) NOT NULL,
-  `promotion` decimal(5,2) NOT NULL
+  `productname` varchar(50) DEFAULT NULL,
+  `unitprice` decimal(5,2) DEFAULT NULL,
+  `stock` int(15) DEFAULT NULL,
+  `promotion` decimal(5,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -90,8 +90,8 @@ INSERT INTO `product` (`productid`, `productname`, `unitprice`, `stock`, `promot
 
 CREATE TABLE `shipping` (
   `shippingid` int(15) NOT NULL,
-  `shippingtype` varchar(50) NOT NULL,
-  `price` decimal(5,2) NOT NULL
+  `shippingtype` varchar(50) DEFAULT NULL,
+  `price` decimal(5,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -109,25 +109,28 @@ INSERT INTO `shipping` (`shippingid`, `shippingtype`, `price`) VALUES
 
 CREATE TABLE `useraccount` (
   `userid` int(15) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `contact` int(8) NOT NULL,
-  `role` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `address1` varchar(50) NOT NULL,
-  `address2` varchar(50) NOT NULL,
-  `city` varchar(50) NOT NULL,
-  `state` varchar(50) NOT NULL,
-  `postalcode` int(6) NOT NULL
+  `email` varchar(50) DEFAULT NULL,
+  `password` varchar(50) DEFAULT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `contact` int(8) DEFAULT NULL,
+  `role` varchar(50) DEFAULT NULL,
+  `address1` varchar(50) DEFAULT NULL,
+  `address2` varchar(50) DEFAULT NULL,
+  `city` varchar(50) DEFAULT NULL,
+  `state` varchar(50) DEFAULT NULL,
+  `postalcode` int(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `useraccount`
 --
 
-INSERT INTO `useraccount` (`userid`, `username`, `password`, `name`, `contact`, `role`, `email`, `address1`, `address2`, `city`, `state`, `postalcode`) VALUES
-(1, 'testuser1', 'cisco123', 'dryap', 91234567, 'user', 'cny@gmail.com', 'Tampines', 'Tampines', 'Singapore', 'Singapore', 555555);
+INSERT INTO `useraccount` (`userid`, `email`, `password`, `name`, `contact`, `role`, `address1`, `address2`, `city`, `state`, `postalcode`) VALUES
+(1, 'cny@gmail.com', 'cisco123', 'dryap', 91234567, 'user', 'Tampines', 'Tampines', 'Singapore', 'Singapore', 555555),
+(2, 'asdasd@g.com', 'asd', 'asdasd', 0, 'user', '', '', '', '', 0),
+(12, 'asd@g.com', 'asdasd', 'adasd', 123123, 'user', NULL, NULL, NULL, NULL, NULL),
+(13, 'asda@asd.com', 'aokok', 'okokok', 1231, 'user', NULL, NULL, NULL, NULL, NULL),
+(17, 'xiaoxao@hotmail.com', 'happy', 'apple', 123123, 'user', NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -171,7 +174,7 @@ ALTER TABLE `shipping`
 --
 ALTER TABLE `useraccount`
   ADD PRIMARY KEY (`userid`),
-  ADD UNIQUE KEY `username` (`username`);
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -199,7 +202,7 @@ ALTER TABLE `shipping`
 -- AUTO_INCREMENT for table `useraccount`
 --
 ALTER TABLE `useraccount`
-  MODIFY `userid` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `userid` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables
