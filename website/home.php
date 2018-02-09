@@ -42,6 +42,6 @@ $result = mysqli_query($con, 'SELECT * FROM product');
 			<td><a href="cart.php?productid=<?php echo $product->productid;?>">Add to Cart</a></td>
         </tr>
 	<?php } ?>
-
+</table>
 </body>
 </html>
