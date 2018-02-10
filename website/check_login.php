@@ -38,67 +38,46 @@ if(isset($_POST['submit']) && !empty($_POST['submit'])){
 					echo "Invalid password   ";
 					//echo $row['password'];
 			}
+			$sql="SELECT * FROM useraccount WHERE EMAIL='$iusername'";
+			$result=mysqli_query($con, $sql);
+			$count; 
+			if (mysqli_num_rows($result) === 1)
+			{
+				$row = mysqli_fetch_assoc($result);
+				if (password_verify($ipassword, $row['password']))
+				{
+					session_start();
+					$_SESSION["login_user"]=$iusername;
+					header("location:login_success.php");
+				} else {
+					echo "Invalid password   ";
+					echo $row['password'];
+				}
+			} else {
+				echo "Your login name is invalid";
+				?><br><a href="main_login.php">Back</a><?php
+				
+			}
 } else {
 	echo "Your login name is invalid";
+	?><br><a href="main_login.php">Back</a><?php
 }
         }
         else{
-           echo "reCAPTCHA verification failed. Are you a bot?";
+		   echo "reCAPTCHA verification failed. Are you a bot?";
+		   ?><br><a href="main_login.php">Back</a><?php
       }
     }   
     else{
-        echo "reCAPTCHA is not complete. Please check the box to complete it.";
+		echo "reCAPTCHA is not complete. Please check the box to complete it.";
+		?><br><a href="main_login.php">Back</a><?php
     }
 }
 else{
-    echo "Error, please try again.";
+	echo "Error, please try again.";
+	?><br><a href="main_login.php">Back</a><?php
 }
 $con->close();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-$sql="SELECT * FROM useraccount WHERE EMAIL='$iusername'";
-$result=mysqli_query($con, $sql);
-$count; 
-if (mysqli_num_rows($result) === 1)
-{
-	$row = mysqli_fetch_assoc($result);
-	if (password_verify($ipassword, $row['password']))
-	{
-		session_start();
-		$_SESSION["login_user"]=$iusername;
-		header("location:login_success.php");
-	} else {
-		echo "Invalid password   ";
-		echo $row['password'];
-	}
-} else {
-	echo "Your login name is invalid";
-}
 
 
 /*
