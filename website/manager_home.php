@@ -46,7 +46,7 @@ $result = mysqli_query($con, 'SELECT * FROM product');
 <br>
 Add Product
 <br>
-<form action="manager_add.php" method="post">
+<form action="manager_add.php" method="POST">
 <table cellpadding="2" cellspacing="2" border="0">
     <tr>
         <th>Item Name</th>

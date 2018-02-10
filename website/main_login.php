@@ -1,7 +1,10 @@
 <html>
+<head>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+</head>
+<form action="check_login.php" method="post" >
 <table width="300" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
 <tr>
-<form name="form1" method="post" action="check_login.php">
 <td>
 <table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#FFFFFF">
 <tr>
@@ -15,26 +18,17 @@
 <tr>
 <td>Password</td>
 <td>:</td>
-<td><input name="mypassword" type="password" id="mypassword"></td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td><input type="submit" name="Submit" value="Login"></td>
+<td><input name="mypassword" type="password" id="mypassword"></td><br>
 </tr>
 </table>
 </td>
+</tr>
+</table>
+<center><div class="g-recaptcha" data-sitekey="6LcNiUUUAAAAAC1Zn7TfchgfRwzLcjjWyqr9hShp"></div></center>
+<center><input type="submit" name="submit" value="Login"></center>
 </form>
-</tr>
-</table>
 
-<br>
-
-<table width="100" align="center" cellpadding="0" cellspacing="1" bgcolor="#FFFFFF">
-<form name="form1" method="post" action="check_login.php">
-<td>
-<table width="100%" cellpadding="3" cellspacing="0" bgcolor="#FFFFFF">
-<input type="button" value="Register" onclick="window.location.href='register.php'" />
+<center><input type="button" value="Register" onclick="window.location.href='register.php'" /></center>
 </tr>
-</table>
+
 </html>
