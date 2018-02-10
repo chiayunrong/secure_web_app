@@ -9,7 +9,7 @@ if(isset($_GET['id']))
  $query = $con->prepare("UPDATE `audit_log` SET `comment`= '$Comment' WHERE id='$Id'");
  $query->execute();
 
- header("Location:http://localhost/secure_web_app/website/audithome.php");
+ header("Location:http://localhost/secure_web_app/website/audit_home.php");
 
 }
 

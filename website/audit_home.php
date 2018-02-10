@@ -33,7 +33,7 @@ $result = mysqli_query($con, 'SELECT * FROM audit_log');
     <?php while($audit_log = mysqli_fetch_object($result)) {?>
         <tr>
             <td><?php echo $audit_log->datetime; ?></td>
-            <td> Data of
+            <td> 
                 <?php 
                 echo $audit_log->new_value;
                 echo "\n";
