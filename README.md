@@ -1,22 +1,29 @@
 # securewebapp
 
-1) Password (Hash + Salted) -- ruitao
+These are the list of security features to be implemented on the website.
+
+Basic Requirements:
+
+[DONE] 1) Password (Hash + Salted) -- Ruitao
 https://crackstation.net/hashing-security.htm
 
-2) OTP / one time password example -- ruitao
+2) OTP / one time password example -- Rutiao
 http://phppot.com/php/php-login-with-otp-authentication/
 
-3) reCaptcha example -- yunrong
+[DONE] 3) reCaptcha example -- Yun Rong
 https://www.codexworld.com/new-google-recaptcha-with-php/
 
-4) Restrict Access example --adriel
+4) Restrict Access example --Adriel
 http://www.wmtips.com/php/simple-ways-restrict-access-webpages-using.htm
 
-5) Session Management -- ruitao
+5) Session Management -- Ruitao
 https://www.w3schools.com/php/php_sessions.asp
 https://www.w3schools.com/php/php_cookies.asp
 
-6) Audit Log -- endy
+6) Audit Log -- Endy
 
-7) Encryption -- ????
-Use libsodium AES 256, will update the example later.
+7) Encryption -- Yun Rong
+Use mcrypt because libsodium AES 256 does not work, will update the example later.
+https://stackoverflow.com/questions/26756322/php-using-mcrypt-and-store-the-encrypted-in-mysql
+
+Others:
