@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 08, 2018 at 06:10 PM
--- Server version: 10.1.30-MariaDB
--- PHP Version: 7.2.1
+-- Generation Time: Feb 10, 2018 at 09:52 AM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 7.1.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -114,7 +114,7 @@ INSERT INTO `product` (`productid`, `productname`, `description`, `unitprice`, `
 CREATE TABLE `useraccount` (
   `userid` int(15) NOT NULL,
   `email` varchar(50) DEFAULT NULL,
-  `password` varchar(50) DEFAULT NULL,
+  `password` varchar(60) DEFAULT NULL,
   `name` varchar(50) DEFAULT NULL,
   `contact` int(8) DEFAULT NULL,
   `role` varchar(50) DEFAULT NULL,
@@ -131,10 +131,7 @@ CREATE TABLE `useraccount` (
 
 INSERT INTO `useraccount` (`userid`, `email`, `password`, `name`, `contact`, `role`, `address1`, `address2`, `city`, `state`, `postalcode`) VALUES
 (1, 'cny@gmail.com', 'cisco123', 'dryap', 91234567, 'user', 'Tampines', 'Tampines', 'Singapore', 'Singapore', 555555),
-(2, 'asdasd@g.com', 'asd', 'asdasd', 0, 'user', '', '', '', '', 0),
-(12, 'asd@g.com', 'asdasd', 'adasd', 123123, 'user', NULL, NULL, NULL, NULL, NULL),
-(13, 'asda@asd.com', 'aokok', 'okokok', 1231, 'user', NULL, NULL, NULL, NULL, NULL),
-(17, 'xiaoxao@hotmail.com', 'happy', 'apple', 123123, 'user', NULL, NULL, NULL, NULL, NULL);
+(18, 'xiaoxao@hotmail.com', '$2y$10$g36aZ.bW.31t6bbxedb1yuPo5MtJbsVeXbRXr8Kw3np7jvlOfzBZO', 'xiaoxiao', 98762543, 'user', NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -191,7 +188,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `useraccount`
 --
 ALTER TABLE `useraccount`
-  MODIFY `userid` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `userid` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Constraints for dumped tables
