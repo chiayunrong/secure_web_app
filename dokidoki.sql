@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 10, 2018 at 09:52 AM
+-- Generation Time: Feb 10, 2018 at 11:26 AM
 -- Server version: 10.1.28-MariaDB
--- PHP Version: 7.1.11
+-- PHP Version: 7.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,15 +25,51 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `auditlog`
+-- Table structure for table `audit_log`
 --
 
-CREATE TABLE `auditlog` (
-  `entrynum` int(15) NOT NULL,
-  `timestamp` date DEFAULT NULL,
-  `entry` varchar(50) DEFAULT NULL,
-  `comments` varchar(500) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `audit_log` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `comment` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `new_value` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `datetime` datetime DEFAULT NULL,
+  `operation` varchar(100) DEFAULT NULL,
+  `tablename` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `audit_log`
+--
+
+INSERT INTO `audit_log` (`id`, `comment`, `new_value`, `datetime`, `operation`, `tablename`) VALUES
+(45, NULL, 'test@gmail.com', '2018-02-10 17:38:32', ' attempted to log in', 'login attempt'),
+(46, NULL, 'test@gmail.com', '2018-02-10 17:38:32', 'logged in', 'login'),
+(47, NULL, 'test@gmail.com', '2018-02-10 17:39:23', ' attempted to log in', 'login attempt'),
+(48, NULL, 'test@gmail.com', '2018-02-10 17:39:23', 'logged in', 'login'),
+(49, NULL, 'test@gmail.com', '2018-02-10 17:40:21', ' attempted to log in', 'login attempt'),
+(50, NULL, 'test@gmail.com', '2018-02-10 17:40:21', 'logged in', 'login'),
+(51, NULL, 'test@gmail.com', '2018-02-10 17:41:11', ' attempted to log in', 'login attempt'),
+(52, NULL, 'test@gmail.com', '2018-02-10 17:41:11', 'logged in', 'login'),
+(53, NULL, 'test@gmail.com', '2018-02-10 17:44:01', ' attempted to log in', 'login attempt'),
+(54, NULL, 'test@gmail.com', '2018-02-10 17:44:01', 'logged in', 'login'),
+(55, NULL, 'test@gmail.com', '2018-02-10 17:48:02', ' attempted to log in', 'login attempt'),
+(56, NULL, 'test@gmail.com', '2018-02-10 17:48:02', 'logged in', 'login'),
+(57, NULL, 'test@gmail.com', '2018-02-10 17:56:33', ' attempted to log in', 'login attempt'),
+(58, NULL, 'test@gmail.com', '2018-02-10 17:56:33', 'logged in', 'login'),
+(59, NULL, 'test@gmail.com', '2018-02-10 17:57:56', ' attempted to log in', 'login attempt'),
+(60, NULL, 'test@gmail.com', '2018-02-10 17:57:56', 'logged in', 'login'),
+(61, NULL, 'test@gmail.com', '2018-02-10 18:00:35', ' attempted to log in', 'login attempt'),
+(62, NULL, 'test@gmail.com', '2018-02-10 18:00:36', 'logged in', 'login'),
+(63, NULL, 'test@gmail.com', '2018-02-10 18:01:36', ' attempted to log in', 'login attempt'),
+(64, NULL, 'test@gmail.com', '2018-02-10 18:01:36', 'logged in', 'login'),
+(65, NULL, 'test@gmail.com', '2018-02-10 18:08:08', ' attempted to log in', 'login attempt'),
+(66, NULL, 'test@gmail.com', '2018-02-10 18:08:08', 'logged in', 'login'),
+(67, NULL, '', '2018-02-10 18:08:09', 'has logged out', 'logout'),
+(68, NULL, '', '2018-02-10 18:10:20', 'has logged out', 'logout'),
+(69, NULL, 'test@gmail.com', '2018-02-10 18:12:14', ' attempted to log in', 'login attempt'),
+(70, NULL, 'test@gmail.com', '2018-02-10 18:12:14', 'logged in', 'login'),
+(71, NULL, 'test@gmail.com', '2018-02-10 18:12:16', 'has logged out', 'logout'),
+(72, NULL, 'test222@gmail.com', '2018-02-10 18:21:49', 'has registered.', 'User');
 
 -- --------------------------------------------------------
 
@@ -56,6 +92,22 @@ INSERT INTO `customerorders` (`orderid`, `timestamp`, `email`) VALUES
 (28, '2018-02-08 18:01:54', 'cny@gmail.com'),
 (29, '2018-02-08 18:01:58', 'cny@gmail.com'),
 (30, '2018-02-08 18:04:33', 'cny@gmail.com');
+
+--
+-- Triggers `customerorders`
+--
+DELIMITER $$
+CREATE TRIGGER `deleteOrder` BEFORE DELETE ON `customerorders` FOR EACH ROW BEGIN
+INSERT INTO audit_log(new_value, datetime, tablename, operation) VALUES ( Old.email, CURRENT_TIMESTAMP(), "Order", "has been deleted from customerorders.");
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `insertOrder` BEFORE INSERT ON `customerorders` FOR EACH ROW BEGIN
+INSERT INTO audit_log(new_value, datetime, tablename, operation) VALUES ( NEW.email, CURRENT_TIMESTAMP(), "Order", "has been added to customerorders");
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -105,6 +157,28 @@ INSERT INTO `product` (`productid`, `productname`, `description`, `unitprice`, `
 (2, 'White Beads (1000/pack)', 'cdas desc', '1.50', 250, '100.00'),
 (3, 'Orange Beads (1000/pack)', 'adscs desc', '1.29', 120, '100.00');
 
+--
+-- Triggers `product`
+--
+DELIMITER $$
+CREATE TRIGGER `deleteProduct` BEFORE DELETE ON `product` FOR EACH ROW BEGIN
+INSERT INTO audit_log(new_value, datetime, tablename, operation) VALUES ( Old.productname, CURRENT_TIMESTAMP(), "Product", "has been deleted from product.");
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `insertProduct` BEFORE INSERT ON `product` FOR EACH ROW BEGIN
+INSERT INTO audit_log(new_value, datetime, tablename, operation) VALUES ( NEW.productname, CURRENT_TIMESTAMP(), "Product", "has been added to product.");
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `updateProduct` BEFORE UPDATE ON `product` FOR EACH ROW BEGIN
+INSERT INTO audit_log(new_value, datetime, tablename, operation) VALUES ( NEW.productname, CURRENT_TIMESTAMP(), "Product", "details has updated in product.");
+END
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -131,17 +205,42 @@ CREATE TABLE `useraccount` (
 
 INSERT INTO `useraccount` (`userid`, `email`, `password`, `name`, `contact`, `role`, `address1`, `address2`, `city`, `state`, `postalcode`) VALUES
 (1, 'cny@gmail.com', 'cisco123', 'dryap', 91234567, 'user', 'Tampines', 'Tampines', 'Singapore', 'Singapore', 555555),
-(18, 'xiaoxao@hotmail.com', '$2y$10$g36aZ.bW.31t6bbxedb1yuPo5MtJbsVeXbRXr8Kw3np7jvlOfzBZO', 'xiaoxiao', 98762543, 'user', NULL, NULL, NULL, NULL, NULL);
+(5, 'test@mail.com', 'test', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(18, 'xiaoxao@hotmail.com', '$2y$10$g36aZ.bW.31t6bbxedb1yuPo5MtJbsVeXbRXr8Kw3np7jvlOfzBZO', 'xiaoxiao', 98762543, 'user', NULL, NULL, NULL, NULL, NULL),
+(19, 'test@gmail.com', '$2y$10$E4/.HsJ13sjPmUEB8sisH.rc2gdzsjU46QUZripqD6wfGPcyL07ve', 'test', 90000000, 'user', NULL, NULL, NULL, NULL, NULL),
+(20, 'test222@gmail.com', '$2y$10$QLhf7tX4Qr.JtrEsbPcZRusyL7JkHPoEtHUuAvem3yvtN0dxuVulW', 'test23', 98018293, 'user', NULL, NULL, NULL, NULL, NULL);
+
+--
+-- Triggers `useraccount`
+--
+DELIMITER $$
+CREATE TRIGGER `deleteUser` BEFORE DELETE ON `useraccount` FOR EACH ROW BEGIN
+INSERT INTO audit_log(new_value, datetime, tablename, operation) VALUES ( OLD.email, CURRENT_TIMESTAMP(), "User", "has been deleted.");
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `insertUser` BEFORE INSERT ON `useraccount` FOR EACH ROW BEGIN
+INSERT INTO audit_log(new_value, datetime, tablename, operation) VALUES ( NEW.email, CURRENT_TIMESTAMP(), "User", "has registered.");
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `updateUser` BEFORE UPDATE ON `useraccount` FOR EACH ROW BEGIN
+INSERT INTO audit_log(new_value, datetime, tablename, operation) VALUES ( NEW.email, CURRENT_TIMESTAMP(), "User", "details has been updated.");
+END
+$$
+DELIMITER ;
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `auditlog`
+-- Indexes for table `audit_log`
 --
-ALTER TABLE `auditlog`
-  ADD PRIMARY KEY (`entrynum`);
+ALTER TABLE `audit_log`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `customerorders`
@@ -173,6 +272,12 @@ ALTER TABLE `useraccount`
 --
 
 --
+-- AUTO_INCREMENT for table `audit_log`
+--
+ALTER TABLE `audit_log`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+
+--
 -- AUTO_INCREMENT for table `customerorders`
 --
 ALTER TABLE `customerorders`
@@ -188,7 +293,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `useraccount`
 --
 ALTER TABLE `useraccount`
-  MODIFY `userid` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `userid` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Constraints for dumped tables

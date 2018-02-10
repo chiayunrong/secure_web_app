@@ -2,9 +2,8 @@
 <body>
 <?php
 include("connect.php");
-
 function cleanData($data)
-   	{
+    {
         //$data=mysqli_real_escape_string($con, $data);
         $data=trim($data);
         $data=strip_tags($data);
@@ -23,23 +22,29 @@ if(isset($_POST['submit']) && !empty($_POST['submit'])){
             $ipassword=mysqli_real_escape_string($con, $_POST['mypassword']); 
             cleanData($iusername);
             cleanData($ipassword);
-           	$sql="SELECT * FROM useraccount WHERE EMAIL='$iusername'";
-			$result=mysqli_query($con, $sql);
-			$count; 
-			if (mysqli_num_rows($result) === 1)
-			{
-				$row = mysqli_fetch_assoc($result);
-				if (password_verify($ipassword, $row['password']))
-				{
-					session_start();
-					$_SESSION["login_user"]=$iusername;
-					header("location:login_success.php");
-				} else {
-					echo "Invalid password   ";
-					//echo $row['password'];
-			}
+            $sql="SELECT * FROM useraccount WHERE EMAIL='$iusername'";
+            $sql2="INSERT INTO `audit_log`(`new_value`, `datetime`, `operation`, `tablename`) VALUES ('$iusername', CURRENT_TIMESTAMP(), ' attempted to log in', 'login attempt')"; 
+            //log attempts
+            $sql3="INSERT INTO `audit_log`(`new_value`, `datetime`, `operation`, `tablename`) VALUES ('$iusername', CURRENT_TIMESTAMP(), 'logged in', 'Login')"; 
+            // log successful logins
+            mysqli_query($con,$sql2);
+            $result=mysqli_query($con, $sql);
+            $count; 
+            if (mysqli_num_rows($result) === 1)
+            {
+                $row = mysqli_fetch_assoc($result);
+                if (password_verify($ipassword, $row['password']))
+                {
+                	mysqli_query($con,$sql3);
+                    session_start();
+                    $_SESSION["login_user"]=$iusername;
+                    header("location:login_success.php");
+                } else {
+                    echo "Invalid password   ";
+                    //echo $row['password'];
+            }
 } else {
-	echo "Your login name is invalid";
+    echo "Your login name is invalid";
 }
         }
         else{
@@ -55,52 +60,26 @@ else{
 }
 $con->close();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*
 $sql="SELECT * FROM useraccount WHERE EMAIL='$iusername'";
 $result=mysqli_query($con, $sql);
 $count; 
 if (mysqli_num_rows($result) === 1)
 {
-	$row = mysqli_fetch_assoc($result);
-	if (password_verify($ipassword, $row['password']))
-	{
-		session_start();
-		$_SESSION["login_user"]=$iusername;
-		header("location:login_success.php");
-	} else {
-		echo "Invalid password   ";
-		echo $row['password'];
-	}
+    $row = mysqli_fetch_assoc($result);
+    if (password_verify($ipassword, $row['password']))
+    {
+        session_start();
+        $_SESSION["login_user"]=$iusername;
+        header("location:login_success.php");
+    } else {
+        echo "Invalid password   ";
+        echo $row['password'];
+    }
 } else {
-	echo "Your login name is invalid";
+    echo "Your login name is invalid";
 }
-
-
+*/
 /*
 if($count == 1) 
 { 
@@ -115,7 +94,6 @@ else
 echo "<p align=center>Wrong Username or Password</p>";
 echo '<p align=center><a href ="main_login.php">Back</a></p>';
 }
-
 $con->close();
 */
 ?>
