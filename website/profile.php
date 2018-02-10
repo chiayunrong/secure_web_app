@@ -20,10 +20,12 @@ if(!isset($_SESSION['login_user'])) //check if you are in a session, if not redi
 
 $iusername = $_SESSION['login_user'];
 include("connect.php");
-$query=$con->prepare("SELECT `email`, `name`, `contact`, `address1`, `address2`, 'city', 'state', 'postalcode' FROM useraccount WHERE email='$iusername'"); //print out the user information table
+include("cipher.php");
+$query=$con->prepare("SELECT `email`, `name`, `contact`, `address1`, `address2`, `city`, `state`, `postalcode`, `iv`, `secretkey` FROM useraccount WHERE email='$iusername'"); //print out the user information table
 $query->execute();
-$query->bind_result($email, $name, $contact, $address1, $address2, $city, $state, $postalcode);
+$query->bind_result($email, $name, $contact, $address1, $address2, $city, $state, $postalcode, $iv, $key);
 $output_pass = "*******"; // Do not show password, can be changed by commenting out this line
+$icontact = encrypt_decrypt('decrypt', $contact, $key, $iv);
 echo "<table align='center' border='1'>";
 echo "<tr>";
 echo "<th>Email</th>";
@@ -40,7 +42,7 @@ while($query->fetch())
 	echo "<tr>";
 	echo "<td>".$email."</td>";
 	echo "<td>".$name."</td>";
-	echo "<td>".$contact."</td>";
+	echo "<td>".encrypt_decrypt('decrypt', $contact, $key, $iv)."</td>";
 	echo "<td>".$address1."</td>";
 	echo "<td>".$address2."</td>";
 	echo "<td>".$city."</td>";

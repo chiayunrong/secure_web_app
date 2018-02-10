@@ -2,8 +2,6 @@
 <body>
 <?php
 include("connect.php");
-include("regex_check.php");
-include("regex_check.php");
 
 function cleanData($data)
     {
