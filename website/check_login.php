@@ -2,6 +2,9 @@
 <body>
 <?php
 include("connect.php");
+include("regex_check.php");
+include("regex_check.php");
+
 function cleanData($data)
     {
         //$data=mysqli_real_escape_string($con, $data);
@@ -20,6 +23,7 @@ if(isset($_POST['submit']) && !empty($_POST['submit'])){
         if ($responseData->success){
             $iusername=mysqli_real_escape_string($con, $_POST['myusername']); 
             $ipassword=mysqli_real_escape_string($con, $_POST['mypassword']); 
+
             cleanData($iusername);
             cleanData($ipassword);
 
@@ -30,40 +34,35 @@ if(isset($_POST['submit']) && !empty($_POST['submit'])){
             // log successful logins
             mysqli_query($con,$sql2);
             $result=mysqli_query($con, $sql);
-            $count; 
-            if (mysqli_num_rows($result) === 1)
-            {
+            //$count; 
+            if (mysqli_num_rows($result) === 1){
                 $row = mysqli_fetch_assoc($result);
-                if (password_verify($ipassword, $row['password']))
-                {
+                if (password_verify($ipassword, $row['password'])){
                 	mysqli_query($con,$sql3);
                     session_start();
                     $_SESSION["login_user"]=$iusername;
                     header("location:login_success.php");
-                } else {
+                } 
+                else {
                     echo "Invalid password   ";
                     //echo $row['password'];
+                }
+            } 
+            else {
+                echo "Your login name is invalid";
+                        ?><br><a href="main_login.php">Back</a><?php
+                            
             }
-} else {
-    echo "Your login name is invalid";
-
-           	?><br><a href="main_login.php">Back</a><?php
-                
-            }
-} else {
-    echo "Your login name is invalid";
-    ?><br><a href="main_login.php">Back</a><?php
-}
-        }
-        else{
+        } 
+        else {
            echo "reCAPTCHA verification failed. Are you a bot?";
            ?><br><a href="main_login.php">Back</a><?php
-      }
-    }   
-    else{
-        echo "reCAPTCHA is not complete. Please check the box to complete it.";
-        ?><br><a href="main_login.php">Back</a><?php
-    }
+            }
+        } 
+        else{
+            echo "reCAPTCHA is not complete. Please check the box to complete it.";
+            ?><br><a href="main_login.php">Back</a><?php
+        }
 }
 else{
     echo "Error, please try again.";
