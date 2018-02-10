@@ -1,16 +1,16 @@
-# securewebapp
+# Secure Web Application
 
-These are the list of security features to be implemented on the website.
+These are the various security features to be implemented on the website.
 
 Basic Requirements:
 
-[DONE] 1) Password (Hash + Salted) -- Ruitao
+[DONE] Password (Hash + Salted) -- Ruitao
 https://crackstation.net/hashing-security.htm
 
 2) OTP / one time password example -- Rutiao
 http://phppot.com/php/php-login-with-otp-authentication/
 
-[DONE] 3) reCaptcha example -- Yun Rong
+[DONE] reCaptcha example -- Yun Rong
 https://www.codexworld.com/new-google-recaptcha-with-php/
 
 4) Restrict Access example --Adriel

@@ -15,7 +15,6 @@ function cleanData($data)
     }
 if(isset($_POST['submit']) && !empty($_POST['submit'])){
     if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])){
-        echo "hehexd";
         $secret = '6LcNiUUUAAAAAJpCxQccdvDx1xHaacLzXW6cmqd2';
         $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
         $responseData = json_decode($verifyResponse);
