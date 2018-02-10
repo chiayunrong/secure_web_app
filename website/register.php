@@ -11,6 +11,10 @@ include("connect.php");
 $error_message = "";
 $emailerror = "";
 $passerror = "";
+$passinputerror = "";
+$cpassinputerror = "";
+$nameerror = "";
+$contacterror = "";
 
 
 
@@ -39,57 +43,76 @@ if (isset($_POST['submit']))
 	cleanData($iemail);
 	cleanData($icpwd);
 
-	if(empty($iemail) || empty($ipwd) || empty($iname)) 
+	if(empty($iemail) || empty ($ipwd) || empty($icpwd) || empty($iname) || empty($icontact))
 	{
-   		$error_message= "*One or more required fields are blank";
+		$error_message="*One or more required fields are blank";
 	}
-
 	
-	if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$iemail))
-	{
-    	$emailerror= "*Email is not valid";
-	}
-
-	if($ipwd != $icpwd) 
-    {
-    	$passerror="Passwords are not equal!";
-    }
-
-    //if (!preg_match)
-    			
-
-	else 
-	{		
-		$sql="SELECT * FROM useraccount WHERE USERNAME='$iemail'";
-		$result=mysqli_query($con, $sql);
-		$count = mysqli_num_rows($result);
-					
-		if($count >= 1)
+	else {		
+	
+		if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$iemail))
 		{
-			$usernameexisterror= "Userame already exists";
+    		$emailerror= "Email is not valid";
 		}
 
-		else
-		{	
-			$query1= $con->prepare("INSERT INTO `useraccount` (`USERID`, `EMAIL`,`PASSWORD`, `NAME`, `CONTACT`, `ROLE`) VALUES (NULL, ?,?,?,?,?)");
-			$pwd = $ipwd;
-			$name = $iname;
-			$contact = $icontact;
-			$role = "user";
-			$email = $iemail;
-			$query1->bind_param('sssss', $email, $pwd, $name, $contact, $role); //bind the parameters
-		
-			if ($query1->execute())
-				{  //execute query
-  					echo "<center>Query executed.</center> <br>";
-  					header("location:register_success.php");
-				}
-			else
-				{
-  					echo "<center>Error executing query.</center> <br>";
-  					header("location:register_failure.php");
-				}
+		if($ipwd != $icpwd) 
+    	{
+    		$passerror= "Passwords are not equal!";
+    	}
+
+		if(!preg_match("/^[^\"']*$/", $ipwd))
+		{
+			$passinputerror= "Password error, please do not use quotations";
+		}
+
+		if(!preg_match("/^[^\"']*$/", $icpwd))
+		{
+			$cpassinputerror= "Password error, please do not use quotations";
+		}
+
+    	if (!preg_match("/^[a-zA-Z]*$/",$iname)) 
+		{
+     		$nameerror = "*Only letters and white space allowed for name"; 
+    	}
+
+    	if (preg_match("/\D/",$icontact))
+		{
+    		$contacterror= "Please insert a 8 digit number";
+		}
+    			
+		else 
+		{		
+			$sql="SELECT * FROM useraccount WHERE USERNAME='$iemail'";
+			$result=mysqli_query($con, $sql);
+			$count = mysqli_num_rows($result);
+					
+			if($count >= 1)
+			{
+				$usernameexisterror= "Userame already exists";
 			}
+
+			else
+			{	
+				$query1= $con->prepare("INSERT INTO `useraccount` (`USERID`, `EMAIL`,`PASSWORD`, `NAME`, `CONTACT`, `ROLE`) VALUES (NULL, ?,?,?,?,?)");
+				$pwd = password_hash($ipwd, PASSWORD_BCRYPT);
+				$name = $iname;
+				$contact = $icontact;
+				$role = "user";
+				$email = $iemail;
+				$query1->bind_param('sssss', $email, $pwd, $name, $contact, $role); //bind the parameters
+		
+				if ($query1->execute())
+					{   //execute query
+  						echo "<center>Query executed.</center> <br>";
+  						header("location:register_success.php");
+					}
+				else
+					{
+  						echo "<center>Error executing query.</center> <br>";
+  						//header("location:register_failure.php");
+					}
+			}
+		}
 	}
 }
 $con->close();
@@ -116,22 +139,22 @@ $con->close();
 	
 <tr>
 <td>Password:</td> 
-<td><input type="password" name="ipwd" /> *</td>
+<td><input type="password" name="ipwd" /> * <?php echo $passinputerror?></td>
 </tr>
 
 <tr>
 <td>Confirm Password:</td>
-<td><input type="password" name="icpwd" /> *</td>
+<td><input type="password" name="icpwd" /> * <?php echo $passerror ?><?php echo $cpassinputerror?></td> 
 </tr>
 
 <tr>
 <td>Name:</td> 
-<td><input type="text" name="iname" /> *</td>
+<td><input type="text" name="iname" /> * <?php echo $nameerror ?></td>
 </tr>
 
 <tr>
 <td>Contact:</td> 
-<td><input type="text" name="icontact" /></td>
+<td><input type="text" name="icontact" /> * <?php echo $contacterror ?></td>
 </tr>
 
 <tr>
@@ -143,7 +166,7 @@ $con->close();
 </form>
 </table>
 
-<center><p><?php echo $error_message; ?><?php echo $passerror ?></p></center>
+<center><p><?php echo $error_message; ?></p></center>
 <center><input type="button" value="Back" onclick="window.location.href='main_login.php'" /></center>
 
 </body>
