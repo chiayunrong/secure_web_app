@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 10, 2018 at 11:28 AM
--- Server version: 10.1.28-MariaDB
--- PHP Version: 7.1.10
+-- Generation Time: Feb 10, 2018 at 06:08 PM
+-- Server version: 10.1.30-MariaDB
+-- PHP Version: 7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -69,7 +69,24 @@ INSERT INTO `audit_log` (`id`, `comment`, `new_value`, `datetime`, `operation`, 
 (69, NULL, 'test@gmail.com', '2018-02-10 18:12:14', ' attempted to log in', 'login attempt'),
 (70, NULL, 'test@gmail.com', '2018-02-10 18:12:14', 'logged in', 'login'),
 (71, NULL, 'test@gmail.com', '2018-02-10 18:12:16', 'has logged out', 'logout'),
-(72, NULL, 'test222@gmail.com', '2018-02-10 18:21:49', 'has registered.', 'User');
+(72, NULL, 'test222@gmail.com', '2018-02-10 18:21:49', 'has registered.', 'User'),
+(73, NULL, 'cny@gmail.com', '2018-02-10 23:53:38', 'has logged out', 'Logout'),
+(74, NULL, 'qwe@qwe.com', '2018-02-11 00:21:07', 'has registered.', 'User'),
+(75, NULL, 'qwe@qwe.com', '2018-02-11 00:21:18', ' attempted to log in', 'login attempt'),
+(76, NULL, 'qwe@qwe.com', '2018-02-11 00:21:27', ' attempted to log in', 'login attempt'),
+(77, NULL, 'qwe@qwe.com', '2018-02-11 00:21:27', 'logged in', 'Login'),
+(78, NULL, 'qwe@qwe.com', '2018-02-11 00:22:19', 'has been deleted.', 'User'),
+(79, NULL, 'qwe@qwe.com', '2018-02-11 00:22:27', 'has registered.', 'User'),
+(80, NULL, 'qwe@qwe.com', '2018-02-11 00:22:35', ' attempted to log in', 'login attempt'),
+(81, NULL, 'qwe@qwe.com', '2018-02-11 00:22:35', 'logged in', 'Login'),
+(82, NULL, 'qwe@qwe.com', '2018-02-11 00:26:58', 'has been deleted.', 'User'),
+(83, NULL, 'a@a.com', '2018-02-11 00:27:11', 'has registered.', 'User'),
+(84, NULL, 'a@a.com', '2018-02-11 00:27:19', ' attempted to log in', 'login attempt'),
+(85, NULL, 'a@a.com', '2018-02-11 00:27:20', 'logged in', 'Login'),
+(86, NULL, 'a@a.com', '2018-02-11 01:04:19', 'has logged out', 'Logout'),
+(87, NULL, 'china@gmail.com', '2018-02-11 01:04:32', 'has registered.', 'User'),
+(88, NULL, 'china@gmail.com', '2018-02-11 01:04:41', ' attempted to log in', 'login attempt'),
+(89, NULL, 'china@gmail.com', '2018-02-11 01:04:41', 'logged in', 'Login');
 
 -- --------------------------------------------------------
 
@@ -190,25 +207,29 @@ CREATE TABLE `useraccount` (
   `email` varchar(50) DEFAULT NULL,
   `password` varchar(60) DEFAULT NULL,
   `name` varchar(50) DEFAULT NULL,
-  `contact` int(8) DEFAULT NULL,
+  `contact` varchar(500) DEFAULT NULL,
   `role` varchar(50) DEFAULT NULL,
   `address1` varchar(50) DEFAULT NULL,
   `address2` varchar(50) DEFAULT NULL,
   `city` varchar(50) DEFAULT NULL,
   `state` varchar(50) DEFAULT NULL,
-  `postalcode` int(6) DEFAULT NULL
+  `postalcode` int(6) DEFAULT NULL,
+  `iv` varchar(500) NOT NULL,
+  `secretkey` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `useraccount`
 --
 
-INSERT INTO `useraccount` (`userid`, `email`, `password`, `name`, `contact`, `role`, `address1`, `address2`, `city`, `state`, `postalcode`) VALUES
-(1, 'cny@gmail.com', 'cisco123', 'dryap', 91234567, 'user', 'Tampines', 'Tampines', 'Singapore', 'Singapore', 555555),
-(5, 'test@mail.com', 'test', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(18, 'xiaoxao@hotmail.com', '$2y$10$g36aZ.bW.31t6bbxedb1yuPo5MtJbsVeXbRXr8Kw3np7jvlOfzBZO', 'xiaoxiao', 98762543, 'user', NULL, NULL, NULL, NULL, NULL),
-(19, 'test@gmail.com', '$2y$10$E4/.HsJ13sjPmUEB8sisH.rc2gdzsjU46QUZripqD6wfGPcyL07ve', 'test', 90000000, 'user', NULL, NULL, NULL, NULL, NULL),
-(20, 'test222@gmail.com', '$2y$10$QLhf7tX4Qr.JtrEsbPcZRusyL7JkHPoEtHUuAvem3yvtN0dxuVulW', 'test23', 98018293, 'user', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `useraccount` (`userid`, `email`, `password`, `name`, `contact`, `role`, `address1`, `address2`, `city`, `state`, `postalcode`, `iv`, `secretkey`) VALUES
+(1, 'cny@gmail.com', 'cisco123', 'dryap', '91234567', 'user', 'Tampines', 'Tampines', 'Singapore', 'Singapore', 555555, '', ''),
+(5, 'test@mail.com', 'test', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', ''),
+(18, 'xiaoxao@hotmail.com', '$2y$10$g36aZ.bW.31t6bbxedb1yuPo5MtJbsVeXbRXr8Kw3np7jvlOfzBZO', 'xiaoxiao', '98762543', 'user', NULL, NULL, NULL, NULL, NULL, '', ''),
+(19, 'test@gmail.com', '$2y$10$E4/.HsJ13sjPmUEB8sisH.rc2gdzsjU46QUZripqD6wfGPcyL07ve', 'test', '90000000', 'user', NULL, NULL, NULL, NULL, NULL, '', ''),
+(20, 'test222@gmail.com', '$2y$10$QLhf7tX4Qr.JtrEsbPcZRusyL7JkHPoEtHUuAvem3yvtN0dxuVulW', 'test23', '98018293', 'user', NULL, NULL, NULL, NULL, NULL, '', ''),
+(23, 'a@a.com', '$2y$10$gR3xGtq1kblrgBCG3qWCDesfq3KByZKjPB/V19QlOGFcEm0wQBm.i', 'a', 'U2JNOUhRZVpLa3pYVUVrNFFGRDAyQT09', 'user', NULL, NULL, NULL, NULL, NULL, '413149ee42cfcda5', '0f7cfdfac06383fe5b9abc71987f1481f6beaddad92c3a22397957f3968a28d8'),
+(24, 'china@gmail.com', '$2y$10$TT3fUQBeGje1XSCuSC03jep.qIH7hbkU7SnHmdCpbPQI4Uf1AH2LG', 'a', 'b2JlZW9tb2U0R2pCNk54eVl1UW9udz09', 'user', NULL, NULL, NULL, NULL, NULL, 'a7fda703ca2d7549', '216f036c64ca7261380d38c1bd2a75c309a8a62e1dfab83ce5548013e8add076');
 
 --
 -- Triggers `useraccount`
@@ -275,7 +296,7 @@ ALTER TABLE `useraccount`
 -- AUTO_INCREMENT for table `audit_log`
 --
 ALTER TABLE `audit_log`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
 -- AUTO_INCREMENT for table `customerorders`
@@ -293,7 +314,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `useraccount`
 --
 ALTER TABLE `useraccount`
-  MODIFY `userid` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `userid` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Constraints for dumped tables
