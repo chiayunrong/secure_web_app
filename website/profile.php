@@ -60,10 +60,8 @@ while($query->fetch())
 echo "</table>";
 
 $error_message="";
-$passerror="";
 $passinputerror="";
-$cpassinputerror="";
-$wrongpasserror="";
+
 if (isset($_POST['submit1'])) 
 {
 	$opwd = mysqli_real_escape_string($con, $_POST['opwd']);
@@ -93,20 +91,11 @@ if (isset($_POST['submit1']))
     else
     {
 
-    	if(!preg_match("/^[^\"']*$/", $ipwd))
+    	if(!preg_match("/^[^\"']*$/", $ipwd) || !preg_match("/^[^\"']*$/", $icpwd) || $ipwd != $icpwd)
 		{
-			$passinputerror= "Password error, please do not use quotations";
+			$passinputerror= "Password error";
 		}
 
-		if(!preg_match("/^[^\"']*$/", $icpwd))
-		{
-			$cpassinputerror= "Password error, please do not use quotations";
-		}
-
-    	if($ipwd != $icpwd) 
-    	{
-    		$passerror= "Passwords are not equal!";
-    	}
 		else
 		{
 			$sql ="SELECT password FROM useraccount WHERE email = '$User'";
@@ -167,11 +156,12 @@ if (isset($_POST['submit1']))
 	</table>
 	</form>
 
-<center><?php echo $wrongpasserror ?></center>
+
 <center><?php echo $passinputerror ?></center>
-<center><?php echo $cpassinputerror ?></center>
-<center><?php echo $passerror ?></center>
 <center><?php echo $error_message ?></center>
+
+
+
 
 <b><center>UPDATE ACCOUNT DETAILS</center></b> 
 <table align='center' border='1'>
@@ -193,43 +183,43 @@ if (isset($_POST['submit1']))
             	<?php echo $useraccount->email; ?>
             </td>
             <td> <form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
-                    <input type="text" name="iName" value= <?php echo $useraccount->name; ?>  >
+                    <input type="text" name="iName" >
                     <input type="submit" value="update" >
  
                 </form>      
             </td>
             <td><form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
-                    <input type="text" name="icontact" value=<?php echo $useraccount->contact; ?>  >
+                    <input type="text" name="icontact" >
                     <input type="submit" value="update" >
  
             </form>
             </td>
             <td><form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
-                    <input type="text" name="iAddress1" value= <?php echo $useraccount->address1; ?>  >
+                    <input type="text" name="iAddress1"   >
                     <input type="submit" value="update" >
  
             </form>
         	</td>
 			<td><form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
-                    <input type="text" name="iAddress2" value= <?php echo $useraccount->address2; ?>  >
+                    <input type="text" name="iAddress2" >
                     <input type="submit" value="update" >
  
                 </form>
             </td>
 			<td><form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
-                    <input type="text" name="iCity" value= <?php echo $useraccount->city; ?>  >
+                    <input type="text" name="iCity" >
                     <input type="submit" value="update" >
  
                 </form>
             </td>
 			<td><form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
-                    <input type="text" name="iState" value= <?php echo $useraccount->state; ?>  >
+                    <input type="text" name="iState"  >
                     <input type="submit" value="update" >
  
                 </form>
             </td>
 			<td><form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
-                    <input type="text" name="iPostalcode" value= <?php echo $useraccount->postalcode; ?>  >
+                    <input type="text" name="iPostalcode"   >
                     <input type="submit" value="update" >
  
                 </form>
@@ -260,7 +250,7 @@ if (isset($_POST['submit1']))
 	</form>
 	
 <br>
-<center><a href="home.php" title="home">Back to Home</a></center>
+<center><a href="redirect_profile.php" title="home">Back to Home</a></center>
 <center><a href = "logout.php" title = "Logout">Logout</a></center>
 
 </body>

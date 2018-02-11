@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 11, 2018 at 04:41 AM
--- Server version: 10.1.30-MariaDB
--- PHP Version: 7.2.1
+-- Generation Time: Feb 11, 2018 at 11:42 AM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 7.1.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -42,8 +42,8 @@ CREATE TABLE `audit_log` (
 --
 
 INSERT INTO `audit_log` (`id`, `comment`, `new_value`, `datetime`, `operation`, `tablename`) VALUES
-(45, NULL, 'test@gmail.com', '2018-02-10 17:38:32', ' attempted to log in', 'login attempt'),
-(46, NULL, 'test@gmail.com', '2018-02-10 17:38:32', 'logged in', 'login'),
+(45, 'aaabbb', 'test@gmail.com', '2018-02-10 17:38:32', ' attempted to log in', 'login attempt'),
+(46, '', 'test@gmail.com', '2018-02-10 17:38:32', 'logged in', 'login'),
 (47, NULL, 'test@gmail.com', '2018-02-10 17:39:23', ' attempted to log in', 'login attempt'),
 (48, NULL, 'test@gmail.com', '2018-02-10 17:39:23', 'logged in', 'login'),
 (49, NULL, 'test@gmail.com', '2018-02-10 17:40:21', ' attempted to log in', 'login attempt'),
@@ -127,7 +127,147 @@ INSERT INTO `audit_log` (`id`, `comment`, `new_value`, `datetime`, `operation`, 
 (127, NULL, 'test@localhost', '2018-02-11 11:34:11', 'details has been updated.', 'User'),
 (128, NULL, 'test@localhost', '2018-02-11 11:34:18', 'details has been updated.', 'User'),
 (129, NULL, 'test@localhost', '2018-02-11 11:40:15', 'details has been updated.', 'User'),
-(130, NULL, 'test@localhost', '2018-02-11 11:40:42', 'details has been updated.', 'User');
+(130, NULL, 'test@localhost', '2018-02-11 11:40:42', 'details has been updated.', 'User'),
+(131, NULL, 'yunrongc@gmail.com', '2018-02-11 15:56:29', 'has registered.', 'User'),
+(132, NULL, 'ihatemyself481@gmail.com', '2018-02-11 15:56:44', 'has registered.', 'User'),
+(133, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 15:57:19', 'has registered.', 'User'),
+(134, NULL, 'yunrongc@gmail.com', '2018-02-11 15:57:36', 'details has been updated.', 'User'),
+(135, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 15:57:48', 'details has been updated.', 'User'),
+(136, NULL, 'ihatemyself481@gmail.com', '2018-02-11 15:58:00', 'details has been updated.', 'User'),
+(137, NULL, 'keeruitao@gmail.com', '2018-02-11 15:58:14', 'has registered.', 'User'),
+(138, NULL, 'yunrongc@gmail.com', '2018-02-11 15:58:44', ' attempted to log in', 'login attempt'),
+(139, NULL, 'yunrongc@gmail.com', '2018-02-11 15:58:44', 'logged in', 'Login'),
+(140, NULL, 'a', '2018-02-11 15:59:31', 'has been added to product.', 'Product'),
+(141, NULL, 'a', '2018-02-11 15:59:36', 'has been deleted from product.', 'Product'),
+(142, NULL, 'a', '2018-02-11 15:59:43', 'details has updated in product.', 'Product'),
+(143, NULL, 'yunrongc@gmail.com', '2018-02-11 16:00:02', 'details has been updated.', 'User'),
+(144, NULL, 'yunrongc@gmail.com', '2018-02-11 16:00:40', 'details has been updated.', 'User'),
+(145, NULL, 'yunrongc@gmail.com', '2018-02-11 16:00:46', 'details has been updated.', 'User'),
+(146, NULL, 'yunrongc@gmail.com', '2018-02-11 16:00:50', 'details has been updated.', 'User'),
+(147, NULL, 'yunrongc@gmail.com', '2018-02-11 16:00:55', 'details has been updated.', 'User'),
+(148, NULL, 'yunrongc@gmail.com', '2018-02-11 16:01:03', 'details has been updated.', 'User'),
+(149, NULL, 'yunrongc@gmail.com', '2018-02-11 16:01:12', 'details has been updated.', 'User'),
+(150, NULL, 'yunrongc@gmail.com', '2018-02-11 16:01:23', 'details has been updated.', 'User'),
+(151, NULL, 'yunrongc@gmail.com', '2018-02-11 16:01:29', 'details has been updated.', 'User'),
+(152, NULL, 'yunrongc@gmail.com', '2018-02-11 16:02:08', 'has been deleted.', 'User'),
+(153, NULL, 'yunrongc@gmail.com', '2018-02-11 16:02:27', 'has registered.', 'User'),
+(154, NULL, 'keeruitao@gmail.com', '2018-02-11 16:03:05', ' attempted to log in', 'login attempt'),
+(155, NULL, 'keeruitao@gmail.com', '2018-02-11 16:03:06', 'logged in', 'Login'),
+(156, NULL, 'cny@gmail.com', '2018-02-11 16:04:18', 'has been added to customerorders', 'Order'),
+(157, NULL, 'keeruitao@gmail.com', '2018-02-11 16:04:45', 'has logged out', 'Logout'),
+(158, NULL, 'ihatemyself481@gmail.com', '2018-02-11 16:05:13', ' attempted to log in', 'login attempt'),
+(159, NULL, 'ihatemyself481@gmail.com', '2018-02-11 16:05:13', 'logged in', 'Login'),
+(160, NULL, 'ihatemyself481@gmail.com', '2018-02-11 16:08:37', 'has logged out', 'Logout'),
+(161, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 16:09:18', ' attempted to log in', 'login attempt'),
+(162, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 16:09:18', 'logged in', 'Login'),
+(163, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 16:15:24', 'has logged out', 'Logout'),
+(164, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 16:15:51', ' attempted to log in', 'login attempt'),
+(165, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 16:15:51', 'logged in', 'Login'),
+(166, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 16:18:05', 'details has been updated.', 'User'),
+(167, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 16:19:00', 'details has been updated.', 'User'),
+(168, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 16:20:24', 'details has been updated.', 'User'),
+(169, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 16:21:14', 'details has been updated.', 'User'),
+(170, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 16:21:33', 'details has been updated.', 'User'),
+(171, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 16:22:02', 'has been deleted.', 'User'),
+(172, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 16:23:37', 'has logged out', 'Logout'),
+(173, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 16:23:58', 'has registered.', 'User'),
+(174, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 16:24:10', ' attempted to log in', 'login attempt'),
+(175, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 16:24:10', 'logged in', 'Login'),
+(176, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 16:24:31', ' attempted to log in', 'login attempt'),
+(177, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 16:24:31', 'logged in', 'Login'),
+(178, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 16:25:11', 'has logged out', 'Logout'),
+(179, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 16:25:26', 'details has been updated.', 'User'),
+(180, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 16:25:42', ' attempted to log in', 'login attempt'),
+(181, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 16:25:42', 'logged in', 'Login'),
+(182, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 16:28:44', 'has logged out', 'Logout'),
+(183, NULL, 'cny@gmail.com', '2018-02-11 16:29:39', 'has been added to customerorders', 'Order'),
+(184, NULL, '', '2018-02-11 16:30:20', 'has logged out', 'Logout'),
+(185, NULL, 'keeruitao@gmail.com', '2018-02-11 16:33:45', ' attempted to log in', 'login attempt'),
+(186, NULL, 'keeruitao@gmail.com', '2018-02-11 16:33:45', 'logged in', 'Login'),
+(187, NULL, 'keeruitao@gmail.com', '2018-02-11 16:34:16', 'has logged out', 'Logout'),
+(188, NULL, 'keeruitao@gmail.com', '2018-02-11 16:35:26', ' attempted to log in', 'login attempt'),
+(189, NULL, 'keeruitao@gmail.com', '2018-02-11 16:35:26', 'logged in', 'Login'),
+(190, NULL, 'keeruitao@gmail.com', '2018-02-11 16:37:58', 'has logged out', 'Logout'),
+(191, NULL, 'ihatemyself481@gmail.com', '2018-02-11 16:38:26', ' attempted to log in', 'login attempt'),
+(192, NULL, 'ihatemyself481@gmail.com', '2018-02-11 16:38:26', 'logged in', 'Login'),
+(193, NULL, 'cny@gmail.com', '2018-02-11 16:41:01', 'has been added to customerorders', 'Order'),
+(194, NULL, 'ihatemyself481@gmail.com', '2018-02-11 16:42:41', 'has logged out', 'Logout'),
+(195, NULL, 'ihatemyself481@gmail.com', '2018-02-11 16:43:06', ' attempted to log in', 'login attempt'),
+(196, NULL, 'ihatemyself481@gmail.com', '2018-02-11 16:43:06', 'logged in', 'Login'),
+(197, NULL, 'cny@gmail.com', '2018-02-11 16:55:28', 'has been added to customerorders', 'Order'),
+(198, NULL, 'ihatemyself481@gmail.com', '2018-02-11 17:01:35', 'has logged out', 'Logout'),
+(199, NULL, 'yunrongc@gmail.com', '2018-02-11 17:01:49', ' attempted to log in', 'login attempt'),
+(200, NULL, 'yunrongc@gmail.com', '2018-02-11 17:01:50', 'logged in', 'Login'),
+(201, NULL, 'cny@gmail.com', '2018-02-11 17:03:16', 'has been added to customerorders', 'Order'),
+(202, NULL, 'cny@gmail.com', '2018-02-11 17:03:16', 'has been added to customerorders', 'Order'),
+(203, NULL, 'yunrongc@gmail.com', '2018-02-11 17:04:21', 'has logged out', 'Logout'),
+(204, NULL, 'yunrongc@gmail.com', '2018-02-11 17:04:31', ' attempted to log in', 'login attempt'),
+(205, NULL, 'yunrongc@gmail.com', '2018-02-11 17:04:31', 'logged in', 'Login'),
+(206, NULL, 'yunrongc@gmail.com', '2018-02-11 17:07:03', ' attempted to log in', 'login attempt'),
+(207, NULL, 'yunrongc@gmail.com', '2018-02-11 17:07:03', 'logged in', 'Login'),
+(208, NULL, 'cny@gmail.com', '2018-02-11 17:08:57', 'has been added to customerorders', 'Order'),
+(209, NULL, 'cny@gmail.com', '2018-02-11 17:08:58', 'has been added to customerorders', 'Order'),
+(210, NULL, 'yunrongc@gmail.com', '2018-02-11 17:11:24', 'details has been updated.', 'User'),
+(211, NULL, 'yunrongc@gmail.com', '2018-02-11 17:11:29', 'has logged out', 'Logout'),
+(212, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 17:12:08', ' attempted to log in', 'login attempt'),
+(213, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 17:12:08', 'logged in', 'Login'),
+(214, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 17:12:25', ' attempted to log in', 'login attempt'),
+(215, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 17:12:36', ' attempted to log in', 'login attempt'),
+(216, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 17:12:36', 'logged in', 'Login'),
+(217, NULL, 'test@localhost', '2018-02-11 17:14:33', 'details has been updated.', 'User'),
+(218, NULL, 'cny@gmail.com', '2018-02-11 17:16:37', 'has been added to customerorders', 'Order'),
+(219, NULL, 'cny@gmail.com', '2018-02-11 17:16:39', 'has been added to customerorders', 'Order'),
+(220, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 17:18:04', 'has logged out', 'Logout'),
+(221, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 17:18:16', ' attempted to log in', 'login attempt'),
+(222, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 17:18:16', 'logged in', 'Login'),
+(223, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 17:23:24', 'has logged out', 'Logout'),
+(224, NULL, 'yunrongc@gmail.com', '2018-02-11 17:23:35', ' attempted to log in', 'login attempt'),
+(225, NULL, 'yunrongc@gmail.com', '2018-02-11 17:23:35', 'logged in', 'Login'),
+(226, NULL, 'cny@gmail.com', '2018-02-11 17:25:42', 'has been added to customerorders', 'Order'),
+(227, NULL, 'cny@gmail.com', '2018-02-11 17:25:42', 'has been added to customerorders', 'Order'),
+(228, NULL, 'cny@gmail.com', '2018-02-11 17:30:42', 'has been added to customerorders', 'Order'),
+(229, NULL, 'cny@gmail.com', '2018-02-11 17:30:43', 'has been added to customerorders', 'Order'),
+(230, NULL, 'yunrongc@gmail.com', '2018-02-11 17:41:21', 'has logged out', 'Logout'),
+(231, NULL, 'ihatemyself481@gmail.com', '2018-02-11 17:41:45', ' attempted to log in', 'login attempt'),
+(232, NULL, 'ihatemyself481@gmail.com', '2018-02-11 17:41:45', 'logged in', 'Login'),
+(233, NULL, 'cny@gmail.com', '2018-02-11 17:42:10', 'has been added to customerorders', 'Order'),
+(234, NULL, 'cny@gmail.com', '2018-02-11 17:42:10', 'has been added to customerorders', 'Order'),
+(235, NULL, 'ihatemyself481@gmail.com', '2018-02-11 17:43:12', 'has logged out', 'Logout'),
+(236, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 17:43:29', ' attempted to log in', 'login attempt'),
+(237, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 17:43:29', 'logged in', 'Login'),
+(238, NULL, 'cny@gmail.com', '2018-02-11 17:44:07', 'has been added to customerorders', 'Order'),
+(239, NULL, 'cny@gmail.com', '2018-02-11 17:44:08', 'has been added to customerorders', 'Order'),
+(240, NULL, 'cny@gmail.com', '2018-02-11 17:44:30', 'has been added to customerorders', 'Order'),
+(241, NULL, 'cny@gmail.com', '2018-02-11 17:44:31', 'has been added to customerorders', 'Order'),
+(242, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 17:51:49', 'has logged out', 'Logout'),
+(243, NULL, 'a@a.com', '2018-02-11 18:07:10', 'has registered.', 'User'),
+(244, NULL, 'aa@a.com', '2018-02-11 18:07:31', 'has registered.', 'User'),
+(245, NULL, '\\\"', '2018-02-11 18:09:12', 'has registered.', 'User'),
+(246, NULL, 'aosdkaosdk', '2018-02-11 18:13:35', 'has registered.', 'User'),
+(247, NULL, 'asdsadlj', '2018-02-11 18:13:50', 'has registered.', 'User'),
+(248, NULL, 'asdijasdoij', '2018-02-11 18:16:40', 'has registered.', 'User'),
+(249, NULL, 'asdasd', '2018-02-11 18:18:45', 'has registered.', 'User'),
+(250, NULL, 'keeruitao@gmail.com', '2018-02-11 18:22:26', ' attempted to log in', 'login attempt'),
+(251, NULL, 'keeruitao@gmail.com', '2018-02-11 18:22:26', 'logged in', 'Login'),
+(252, NULL, 'keeruitao@gmail.com', '2018-02-11 18:26:17', 'has logged out', 'Logout'),
+(253, NULL, 'ihatemyself481@gmail.com', '2018-02-11 18:26:39', ' attempted to log in', 'login attempt'),
+(254, NULL, 'ihatemyself481@gmail.com', '2018-02-11 18:26:39', 'logged in', 'Login'),
+(255, NULL, 'ihatemyself481@gmail.com', '2018-02-11 18:27:49', 'has logged out', 'Logout'),
+(256, NULL, 'yunrongc@gmail.com', '2018-02-11 18:28:22', ' attempted to log in', 'login attempt'),
+(257, NULL, 'yunrongc@gmail.com', '2018-02-11 18:28:22', 'logged in', 'Login'),
+(258, NULL, 'a', '2018-02-11 18:31:48', 'has been added to product.', 'Product'),
+(259, NULL, 'yunrongc@gmail.com', '2018-02-11 18:32:25', 'has logged out', 'Logout'),
+(260, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 18:32:56', ' attempted to log in', 'login attempt'),
+(261, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 18:32:56', 'logged in', 'Login'),
+(262, NULL, 'adrielkoh@yahoo.com.sg', '2018-02-11 18:40:33', 'has logged out', 'Logout'),
+(263, NULL, 'asdijasdoij', '2018-02-11 18:42:05', 'has been deleted.', 'User'),
+(264, NULL, 'a@a.com', '2018-02-11 18:42:29', 'has been deleted.', 'User'),
+(265, NULL, 'aa@a.com', '2018-02-11 18:42:29', 'has been deleted.', 'User'),
+(266, NULL, '\\\"', '2018-02-11 18:42:29', 'has been deleted.', 'User'),
+(267, NULL, 'aosdkaosdk', '2018-02-11 18:42:29', 'has been deleted.', 'User'),
+(268, NULL, 'asdsadlj', '2018-02-11 18:42:29', 'has been deleted.', 'User'),
+(269, NULL, 'asdasd', '2018-02-11 18:42:29', 'has been deleted.', 'User'),
+(270, NULL, 'test@localhost', '2018-02-11 18:42:35', 'has been deleted.', 'User');
 
 -- --------------------------------------------------------
 
@@ -149,7 +289,27 @@ INSERT INTO `customerorders` (`orderid`, `timestamp`, `email`) VALUES
 (27, '2018-02-08 18:01:49', 'cny@gmail.com'),
 (28, '2018-02-08 18:01:54', 'cny@gmail.com'),
 (29, '2018-02-08 18:01:58', 'cny@gmail.com'),
-(30, '2018-02-08 18:04:33', 'cny@gmail.com');
+(30, '2018-02-08 18:04:33', 'cny@gmail.com'),
+(31, '2018-02-11 09:04:18', 'cny@gmail.com'),
+(32, '2018-02-11 09:29:39', 'cny@gmail.com'),
+(33, '2018-02-11 09:41:01', 'cny@gmail.com'),
+(34, '2018-02-11 09:55:28', 'cny@gmail.com'),
+(35, '2018-02-11 10:03:16', 'cny@gmail.com'),
+(36, '2018-02-11 10:03:16', 'cny@gmail.com'),
+(37, '2018-02-11 10:08:57', 'cny@gmail.com'),
+(38, '2018-02-11 10:08:58', 'cny@gmail.com'),
+(39, '2018-02-11 10:16:37', 'cny@gmail.com'),
+(40, '2018-02-11 10:16:39', 'cny@gmail.com'),
+(41, '2018-02-11 10:25:42', 'cny@gmail.com'),
+(42, '2018-02-11 10:25:42', 'cny@gmail.com'),
+(43, '2018-02-11 10:30:42', 'cny@gmail.com'),
+(44, '2018-02-11 10:30:43', 'cny@gmail.com'),
+(45, '2018-02-11 10:42:10', 'cny@gmail.com'),
+(46, '2018-02-11 10:42:10', 'cny@gmail.com'),
+(47, '2018-02-11 10:44:07', 'cny@gmail.com'),
+(48, '2018-02-11 10:44:08', 'cny@gmail.com'),
+(49, '2018-02-11 10:44:30', 'cny@gmail.com'),
+(50, '2018-02-11 10:44:31', 'cny@gmail.com');
 
 --
 -- Triggers `customerorders`
@@ -189,7 +349,8 @@ INSERT INTO `orderinfo` (`productid`, `orderid`, `unitprice`, `quantity`) VALUES
 (3, 27, '1.29', 1),
 (3, 28, '1.29', 1),
 (2, 29, '1.50', 11),
-(1, 30, '1.00', 1);
+(1, 30, '1.00', 1),
+(1, 31, '1.00', 5);
 
 -- --------------------------------------------------------
 
@@ -213,7 +374,8 @@ CREATE TABLE `product` (
 INSERT INTO `product` (`productid`, `productname`, `description`, `unitprice`, `stock`, `promotion`) VALUES
 (1, 'Black Beads (1000/pack)', 'abc desc', '1.00', 100, '100.00'),
 (2, 'White Beads (1000/pack)', 'cdas desc', '1.50', 250, '100.00'),
-(3, 'Orange Beads (1000/pack)', 'adscs desc', '1.29', 120, '100.00');
+(3, 'a', 'a', '1.00', 1, '1.00'),
+(4, 'a', 'a', '1.00', 1, '2.00');
 
 --
 -- Triggers `product`
@@ -265,7 +427,10 @@ CREATE TABLE `useraccount` (
 --
 
 INSERT INTO `useraccount` (`userid`, `email`, `password`, `name`, `contact`, `role`, `address1`, `address2`, `city`, `state`, `postalcode`, `iv`, `secretkey`, `password_token`) VALUES
-(32, 'test@localhost', '$2y$10$OkQh6mfo3c92UQzt8Qt1QeKEvOK2LYUbiQK5Bi2/ooiQcO2BGAGEi', 'a', 'THdqeENhdUpQNk8rT0s4d3l0Uk5IZz09', 'user', NULL, NULL, NULL, NULL, NULL, '8e22daf000a9689e', 'd688af45b907b099bfd796edac43686bcb8ca2f4a0e243b901f60c25dbb3b1f6', 'f7aed731bcb89f93');
+(37, 'ihatemyself481@gmail.com', '$2y$10$EJ9PcsWfHADgb0fSrE36reaqJBarzPshbIdpJFCw02xbETAgL14j.', 'a', 'TlpsZXNFYTc4K1BmSS94dlA4Rzdwdz09', 'auditor', NULL, NULL, NULL, NULL, NULL, '7af0d56d9bf2d52f', 'e6e749e59cb072c360224a0c3634b59dd843b533a6916814aa9b9909699bd0ea', ''),
+(39, 'keeruitao@gmail.com', '$2y$10$4GbhmLwjYGo5oSoibs52Pe7/2tx75q4Lr528BfFuMjPcGKf1dQKNC', 'ruitao', 'WTJOM0ZlVi9sWXE4NkJKUUYvU2lCZz09', 'user', NULL, NULL, NULL, NULL, NULL, '7f3edcfaf515d385', 'f90ff5a60b555b4a97abde55302f515f564ffcb67ec54374941d370123a5a03b', ''),
+(40, 'yunrongc@gmail.com', '$2y$10$siOyiCBlATdKnjSCE02snuCl8O8Butkx0M/CXSrBWzcHLPBj6/Ktq', 'a', 'ZnZjSE1VZjZqSE5naFZzR0NhR0JDZz09', 'manager', NULL, NULL, NULL, NULL, NULL, '980f1de1b721f366', '74ca49482c1378d04fe09c13724213d91da974c9afc45b56e7d523414451812f', ''),
+(41, 'adrielkoh@yahoo.com.sg', '$2y$10$V07wOxSioGaZsslmafYpjO/wqkOEI1ukKqAkH/2Kz0o043pVX4Pxi', 'Aids', 'cmxpVmRSNWJWKzNLcllrNHFxdUExZz09', 'admin', NULL, NULL, NULL, NULL, NULL, 'd4667ee1f21fa3e3', '44e665f85fc5d79674fb9099c6cf50e6e533a9350e33dc37f1dd5b40d8b46d47', '');
 
 --
 -- Triggers `useraccount`
@@ -332,25 +497,25 @@ ALTER TABLE `useraccount`
 -- AUTO_INCREMENT for table `audit_log`
 --
 ALTER TABLE `audit_log`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=271;
 
 --
 -- AUTO_INCREMENT for table `customerorders`
 --
 ALTER TABLE `customerorders`
-  MODIFY `orderid` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `orderid` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `productid` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `productid` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `useraccount`
 --
 ALTER TABLE `useraccount`
-  MODIFY `userid` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `userid` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- Constraints for dumped tables

@@ -1,6 +1,22 @@
 <?php 
+session_start();
 require 'connect.php';
 include ("cipher.php");
+
+if(!isset($_SESSION['login_user'])) //check if you are in a session, if not redirect to login page
+{
+   header("Location:main_login.php");
+}
+$irole= $_SESSION['user_role'];
+if($irole != "manager")
+{
+    header("location:home.php");
+}
+$otpsession= $_SESSION['user'];
+if ($otpsession != 1)
+{
+    header("location:otp.php");
+}
 
 $email = $_GET['email'];
 function cleanData($data)
@@ -138,7 +154,7 @@ echo "postalcode added";
 }
 ?>
 <br>
-<a href="http://localhost/secure_web_app/website/profile.php"> Back </a>
+<a href="profile.php"> Back </a>
 
 
 

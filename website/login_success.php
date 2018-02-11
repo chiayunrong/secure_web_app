@@ -24,7 +24,7 @@ else
 	echo $irole;
 	if($irole=='admin')
 	{
-		header("location:admin_home.php");
+		header("location:time_check.php");
 	}
 	elseif ($irole=='user') 
 	{

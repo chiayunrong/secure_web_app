@@ -31,16 +31,22 @@ if(isset($_GET['id']))
 {
  $Comment = $_POST['iComment'];
  $Id = $_GET['id'];
-
- $query = $con->prepare("UPDATE `audit_log` SET `comment`= '$Comment' WHERE id='$Id'");
- $query->execute();
-
- header("Location:http://localhost/secure_web_app/website/audit_home.php");
+if(!preg_match('/^[a-z0-9 .\-]+$/i', $Comment)) 
+	{
+		echo "Only letters, numbers and white spaces allowed";
+	}
+else
+{
+  $query = $con->prepare("UPDATE `audit_log` SET `comment`= '$Comment' WHERE id='$Id'");
+  $query->execute();
+  echo "comment added.";
+}
 
 }
 
 ?>
-
+<br>
+<a href="audit_home.php">Back</a>
 
 
 

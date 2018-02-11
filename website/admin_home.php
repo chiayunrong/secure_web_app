@@ -22,15 +22,13 @@ if(isset($_POST["update"]))
 	{
 		$userid=$_POST["userid"];
 		$name=$_POST["name"];
-		$contact=$_POST["contact"];
-		$role=$_POST["role"];
 		$address1=$_POST["address1"];	
 		$address2=$_POST["address2"];
         $city=$_POST["city"];
 		$state=$_POST["state"];
 		$postalcode=$_POST["postalcode"];	
 	
-	$query=$con->prepare("update `useraccount` set `userid`='$userid', `name`='$name', `contact`='$contact', `role`='$role', `address1`='$address1', `address2`='$address2', `city`='$city', `state`='$state', `postalcode`='$postalcode' where userid=".$_POST['userid']);
+	$query=$con->prepare("update `useraccount` set `userid`='$userid', `name`='$name', `address1`='$address1', `address2`='$address2', `city`='$city', `state`='$state', `postalcode`='$postalcode' where userid=".$_POST['userid']);
 	if($query->execute())
 	{
 		echo "<center>Account Information Updated!</center><br>";
@@ -98,7 +96,7 @@ echo "<table border='1'>
 
 while($query->fetch())
 {
-	if($userid ==1)
+	if($role == 'admin')
 	{
 		echo "<tr>";
 	}
@@ -133,6 +131,7 @@ mysqli_close($con);
         <p>
 
             <input type="button" onclick="javascript:window.location.href='admin_create.php'" value="create account"/>
+            <input type="button" onclick="javascript:window.location.href='profile.php'"" value="profile"/>
 		    <input type="button" onclick="javascript:window.location.href='logout.php'" value="logout" />
 
 

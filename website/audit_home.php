@@ -63,6 +63,6 @@ $result = mysqli_query($con, 'SELECT * FROM audit_log');
             </td>
         </tr>
 	<?php } ?>
-<meta http-equiv="refresh" content="<?php echo 5 ?>;URL='<?php echo $_SERVER['PHP_SELF']?>">
+<meta http-equiv="refresh" content="<?php echo 20 ?>;URL='<?php echo $_SERVER['PHP_SELF']?>">
 </body>
 </html>

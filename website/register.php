@@ -9,24 +9,9 @@
 include("connect.php");
 include("cipher.php");
 
-function random_str($length, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
-{
-    $str = '';
-    $max = mb_strlen($keyspace, '8bit') - 1;
-    for ($i = 0; $i < $length; ++$i) {
-        $str .= $keyspace[random_int(0, $max)];
-    }
-    return $str;
-}
-
 $error_message = "";
-$emailerror = "";
-$passerror = "";
-$passinputerror = "";
-$cpassinputerror = "";
-$nameerror = "";
-$contacterror = "";
-$usernameexisterror= "";
+$error_input = "";
+$usernameexisterror = "";
 
 $secret_key = random_str(32);
 $secret_iv = random_str(16);
@@ -42,8 +27,6 @@ if (isset($_POST['submit']))
 	$iname = mysqli_real_escape_string($con, $_POST['iname']);
 	$post_contact = mysqli_real_escape_string($con, $_POST['icontact']);
 	$iemail = mysqli_real_escape_string($con, $_POST['iemail']);
-
-	$icontact = encrypt_decrypt('encrypt', $post_contact, $key, $iv);
 
 	function cleanData($data)
     {
@@ -62,45 +45,21 @@ if (isset($_POST['submit']))
 	cleanData($iemail);
 	cleanData($icpwd);
 
-	if(empty($iemail) || empty ($ipwd) || empty($icpwd) || empty($iname) || empty($icontact))
+	if(empty($iemail) || empty ($ipwd) || empty($icpwd) || empty($iname) || empty($post_contact))
 	{
 		$error_message="*One or more required fields are blank";
 	}
 	
 	else {		
 		
-		if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$iemail))
+		if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$iemail) || $ipwd != $icpwd || !preg_match("/^[^\"']*$/", $ipwd) || !preg_match("/^[^\"']*$/", $icpwd) || !preg_match("/^[a-zA-Z]*$/",$iname) || preg_match("/\D/",$post_contact))
 		{
-    		$emailerror= "Email is not valid";
+    		$error_input= "You have entered an invalid input";
 		}
-
-		if($ipwd != $icpwd) 
-    	{
-    		$passerror= "Passwords are not equal!";
-    	}
-
-		if(!preg_match("/^[^\"']*$/", $ipwd))
-		{
-			$passinputerror= "Password error, please do not use quotations";
-		}
-
-		if(!preg_match("/^[^\"']*$/", $icpwd))
-		{
-			$cpassinputerror= "Password error, please do not use quotations";
-		}
-
-    	if (!preg_match("/^[a-zA-Z]*$/",$iname)) 
-		{
-     		$nameerror = "*Only letters and white space allowed for name"; 
-    	}
-
-    	//if (preg_match("/\D/",$icontact))
-		//{
-    		//$contacterror= "Please insert a 8 digit number";
-		//}
     			
 		else 
-		{		
+		{	
+			$icontact = encrypt_decrypt('encrypt', $post_contact, $key, $iv);
 			$sql="SELECT * FROM useraccount WHERE email='$iemail'";
 			$result=mysqli_query($con, $sql);
 			$count = mysqli_num_rows($result);		
@@ -151,28 +110,28 @@ $con->close();
 <table align="center" border=0>
 <tr>
 <td>Email:</td>
-<td><input type="text" id="username" name="iemail" /> * <?php echo $emailerror ?></td>
+<td><input type="text" id="username" name="iemail" /> * </td>
 
 </tr>
 	
 <tr>
 <td>Password:</td> 
-<td><input type="password" name="ipwd" /> * <?php echo $passinputerror?></td>
+<td><input type="password" name="ipwd" /> * </td>
 </tr>
 
 <tr>
 <td>Confirm Password:</td>
-<td><input type="password" name="icpwd" /> * <?php echo $passerror ?><?php echo $cpassinputerror?></td> 
+<td><input type="password" name="icpwd" /> * </td> 
 </tr>
 
 <tr>
 <td>Name:</td> 
-<td><input type="text" name="iname" /> * <?php echo $nameerror ?></td>
+<td><input type="text" name="iname" /> * </td>
 </tr>
 
 <tr>
 <td>Contact:</td> 
-<td><input type="text" name="icontact" /> * <?php echo $contacterror ?></td>
+<td><input type="text" name="icontact" /> * </td>
 </tr>
 
 <tr>
@@ -184,7 +143,7 @@ $con->close();
 </form>
 </table>
 
-<center><p><?php echo $error_message; ?><?php echo $usernameexisterror; ?></p></center>
+<center><p><?php echo $error_message; ?><?php echo $error_input; ?><?php echo $usernameexisterror ?></p></center>
 
 <center><input type="button" value="Back" onclick="window.location.href='main_login.php'" /></center>
 

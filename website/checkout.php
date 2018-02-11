@@ -7,6 +7,13 @@ if(!isset($_SESSION['login_user'])) //check if you are in a session, if not redi
 {
    header("Location:main_login.php");
 }
+
+$irole = $_SESSION['user_role'];
+if($irole != "user")
+{
+    header("location:redirect_home.php");
+}
+
 $otpsession= $_SESSION['user'];
 if ($otpsession != 1)
 {

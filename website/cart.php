@@ -1,13 +1,20 @@
 <?php
+error_reporting(0);
 session_start();
 if(!isset($_SESSION['login_user'])) //check if you are in a session, if not redirect to login page
 {
    header("Location:main_login.php");
 }
 $irole = $_SESSION['user_role'];
+
 if($irole != "user")
 {
     header("location:redirect_home.php");
+}
+
+if ($otpsession != 1)
+{
+    header("location:otp.php");
 }
 require 'connect.php';
 require 'item.php';
