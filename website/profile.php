@@ -16,7 +16,9 @@ if ($otpsession != 1)
 {
     header("location:otp.php");
 }
+require 'connect.php';
 $User=$_SESSION['login_user'];
+$result=mysqli_query($con, "SELECT * FROM useraccount where email='$User'");
 
 ?>
 
