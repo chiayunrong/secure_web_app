@@ -198,7 +198,12 @@ if (isset($_POST['submit1']))
  
                 </form>      
             </td>
-            <td><?php echo $useraccount->contact; ?></td>
+            <td><form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
+                    <input type="text" name="icontact" value=<?php echo $useraccount->contact; ?>  >
+                    <input type="submit" value="update" >
+ 
+            </form>
+            </td>
             <td><form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
                     <input type="text" name="iAddress1" value= <?php echo $useraccount->address1; ?>  >
                     <input type="submit" value="update" >
