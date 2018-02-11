@@ -1,5 +1,4 @@
 <?php
-error_reporting(0);
 if ( $_SERVER['REQUEST_METHOD']=='GET' && realpath(__FILE__) == realpath( $_SERVER['SCRIPT_FILENAME'] ) ) 
 {
     
@@ -49,7 +48,7 @@ function checkAlphaNumSpecial($string){
 }
 
 function checkEmail($string){
-        if (preg_match('/^[ A-Za-z0-9@.]*$/', $string) && strpos($string, ' ') === False){
+        if (preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$string) && strpos($string, ' ') === False){
             return True;
         }
         else {

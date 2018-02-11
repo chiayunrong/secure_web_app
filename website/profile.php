@@ -6,7 +6,6 @@
 <body>
 
 <?php
-error_reporting(0);
 session_start(); 
 if(!isset($_SESSION['login_user'])) //check if you are in a session, if not redirect to login page
 {
@@ -209,43 +208,43 @@ if (isset($_POST['submit1']))
             <td>
             	<?php echo $useraccount->email; ?>
             </td>
-            <td> <form action="profileupdate.php" method="POST"> 
+            <td> <form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
                     <input type="text" name="iName" >
                     <input type="submit" value="update" >
  
                 </form>      
             </td>
-            <td><form action="profileupdate.php" method="POST"> 
+            <td><form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
                     <input type="text" name="icontact" >
                     <input type="submit" value="update" >
  
             </form>
             </td>
-            <td><form action="profileupdate.php" method="POST"> 
+            <td><form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
                     <input type="text" name="iAddress1"   >
                     <input type="submit" value="update" >
  
             </form>
         	</td>
-			<td><form action="profileupdate.php" method="POST"> 
+			<td><form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
                     <input type="text" name="iAddress2" >
                     <input type="submit" value="update" >
  
                 </form>
             </td>
-			<td><form action="profileupdate.php" method="POST"> 
+			<td><form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
                     <input type="text" name="iCity" >
                     <input type="submit" value="update" >
  
                 </form>
             </td>
-			<td><form action="profileupdate.php" method="POST"> 
+			<td><form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
                     <input type="text" name="iState"  >
                     <input type="submit" value="update" >
  
                 </form>
             </td>
-			<td><form action="profileupdate.php" method="POST"> 
+			<td><form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
                     <input type="text" name="iPostalcode"   >
                     <input type="submit" value="update" >
  
@@ -261,8 +260,20 @@ if (isset($_POST['submit1']))
 <br>
 <center>Set Up Google Auth <br>
 <?php
+//include("google_auth/GoogleAuthenticator.php");
+//include("google_auth/FixedBitNotation.php");
+
 $g = new \Google\Authenticator\GoogleAuthenticator();
-echo '<img src="'.$g->getURL('DokiDoki', 'bestshopever.com', $googletok).'" />';
+//$salt = '7WAO342QFANY6IKBF7L7SWEUU79WL3VMT920VB5NQMW';
+//$googlesecret = $salt.$iv;
+//$secret = 'XVQ2UIGO75XRUKJO';
+
+//$secret = $g->generateSecret();
+//echo $g->getCode($secret);
+//echo $googletok;
+//mysqli_query($con, "UPDATE useraccount SET googletoken = '$secret' WHERE email='$iusername'");
+echo '<img src="'.$g->getURL('DokiDoki', 'example.com', $googletok).'" />';
+//echo \Google\Authenticator\GoogleQrUrl::generate('chregu', $secret, 'GoogleAuthenticatorExample');
 ?>
 </center>
 <b><center>DELETE ACCOUNT</center></b> <!-allow user to delete their account and end the session->

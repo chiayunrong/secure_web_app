@@ -3,6 +3,8 @@ error_reporting(0);
 session_start();
 require 'connect.php';
 require 'item.php';
+include("google_auth/GoogleAuthenticator.php");
+include("google_auth/FixedBitNotation.php");
 
 if(!isset($_SESSION['login_user'])) //check if you are in a session, if not redirect to login page
 {

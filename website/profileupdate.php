@@ -1,5 +1,4 @@
 <?php 
-error_reporting(0);
 session_start();
 require 'connect.php';
 include ("cipher.php");
@@ -9,9 +8,9 @@ if(!isset($_SESSION['login_user'])) //check if you are in a session, if not redi
    header("Location:main_login.php");
 }
 $irole= $_SESSION['user_role'];
-if($irole != "manager")
+if($irole != "manager" || "user")
 {
-    header("location:home.php");
+    //header("location:home.php");
 }
 $otpsession= $_SESSION['user'];
 if ($otpsession != 1)
@@ -19,7 +18,7 @@ if ($otpsession != 1)
     header("location:otp.php");
 }
 
-$email = $_SESSION['login_user'];
+$email = $_GET['email'];
 function cleanData($data)
     {
         //$data=mysqli_real_escape_string($con, $data);
@@ -53,24 +52,22 @@ else
 
 if(isset($_POST['icontact']))
 {
-	$icontact = $_POST['icontact'];
-	if (!preg_match('/^[0-9]+$/', $icontact))
-	{
-		echo "only numbers accepted!";
-	}
-	else
-	{
+
 	$secret_key = random_str(32);
 	$secret_iv = random_str(16);
+	
 	// hash
 	$key = hash('sha256', $secret_key);
 	$iv = substr(hash('sha256', $secret_iv), 0, 16);
 
-	
-	$encrypted_contact = encrypt_decrypt('encrypt', $icontact, $key, $iv);
-	$query = $con->prepare("UPDATE `useraccount` SET `contact`= '$encrypted_contact', `secretkey`= '$key', `iv` = '$iv' WHERE email='$email'");
-	$query->execute();
-	echo "contact added";
+	$icontact = $_POST['icontact'];
+	cleanData($icontact);
+	if(preg_match("/\D/",$icontact))
+	{
+		$encrypted_contact = encrypt_decrypt('encrypt', $icontact, $key, $iv);
+		$query = $con->prepare("UPDATE `useraccount` SET `contact`= '$encrypted_contact', `secretkey`= '$key', `iv` = '$iv' WHERE email='$email'");
+		$query->execute();
+		echo "contact added";
 	}
 }
 

@@ -152,7 +152,7 @@ final class GoogleAuthenticator
 
         $issuer = func_get_args()[3] ?? null;
         $accountName = sprintf('%s@%s', $user, $hostname);
-
+        include("GoogleQrUrl.php");
         // manually concat the issuer to avoid a change in URL
         $url = GoogleQrUrl::generate($accountName, $secret);
 

@@ -2,7 +2,6 @@
 <body>
 <title>Manager Home Page</title>
 <?php
-error_reporting(0);
 session_start(); 
 if(!isset($_SESSION['login_user'])) //check if you are in a session, if not redirect to login page
 {
