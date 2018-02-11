@@ -7,6 +7,11 @@ if(!isset($_SESSION['login_user'])) //check if you are in a session, if not redi
 {
    header("Location:main_login.php");
 }
+$otpsession= $_SESSION['user'];
+if ($otpsession != 1)
+{
+    header("location:otp.php");
+}
 $User=$_SESSION['login_user'];
 
 //Save new order

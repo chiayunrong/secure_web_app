@@ -7,6 +7,17 @@ if(!isset($_SESSION['login_user'])) //check if you are in a session, if not redi
 {
    header("Location:main_login.php");
 }
+$irole= $_SESSION['user_role'];
+if($irole != "manager")
+{
+    header("location:redirect_home.php");
+}
+$otpsession= $_SESSION['user'];
+if ($otpsession != 1)
+{
+    header("location:otp.php");
+}
+
 
 $post_product_name = $_POST['post_product_name'];
 $post_description = $_POST['post_description'];

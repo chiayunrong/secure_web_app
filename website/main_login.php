@@ -27,11 +27,7 @@
 <center><div class="g-recaptcha" data-sitekey="6LcNiUUUAAAAAC1Zn7TfchgfRwzLcjjWyqr9hShp"></div></center>
 <center><input type="submit" name="submit" value="Login"></center>
 </form>
-<center><form action="forgot_password.php" method="POST">
-    Enter your e-mail below to recover your password. <br>
-    <input type="text" name="email"> <br>
-    <input type="submit" name="submit" value="Forgot Password?">
-</form></center>
+
 <center><input type="button" value="Register" onclick="window.location.href='register.php'" /></center>
 </tr>
 

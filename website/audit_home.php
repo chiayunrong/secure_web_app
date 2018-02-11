@@ -3,14 +3,24 @@
 <title>Audit Page</title>
 <?php
 
-/* 
+
 session_start(); 
 if(!isset($_SESSION['login_user'])) //check if you are in a session, if not redirect to login page
 {
    header("Location:main_login.php");
 }
+$irole = $_SESSION['user_role'];
+if($irole != "auditor")
+{
+    header("location:redirect_home.php");
+}
+$otpsession= $_SESSION['user'];
+if ($otpsession != 1)
+{
+    header("location:otp.php");
+}
+
 $User=$_SESSION['login_user'];
-*/
 
 require 'connect.php';
 $result = mysqli_query($con, 'SELECT * FROM audit_log');

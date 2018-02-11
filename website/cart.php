@@ -1,10 +1,19 @@
 <?php
 session_start();
+if(!isset($_SESSION['login_user'])) //check if you are in a session, if not redirect to login page
+{
+   header("Location:main_login.php");
+}
+$irole = $_SESSION['user_role'];
+if($irole != "user")
+{
+    header("location:redirect_home.php");
+}
 require 'connect.php';
 require 'item.php';
 
+
 if(isset($_GET['productid']) && !isset($_POST['update'])){
-    
     $result = mysqli_query($con, 'SELECT * FROM product WHERE productid='.$_GET['productid']);
     $product = mysqli_fetch_object($result);
     $item = new Item();

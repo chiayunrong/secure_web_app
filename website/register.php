@@ -9,6 +9,16 @@
 include("connect.php");
 include("cipher.php");
 
+function random_str($length, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
+{
+    $str = '';
+    $max = mb_strlen($keyspace, '8bit') - 1;
+    for ($i = 0; $i < $length; ++$i) {
+        $str .= $keyspace[random_int(0, $max)];
+    }
+    return $str;
+}
+
 $error_message = "";
 $emailerror = "";
 $passerror = "";
@@ -16,6 +26,7 @@ $passinputerror = "";
 $cpassinputerror = "";
 $nameerror = "";
 $contacterror = "";
+$usernameexisterror= "";
 
 $secret_key = random_str(32);
 $secret_iv = random_str(16);
@@ -24,7 +35,6 @@ $secret_iv = random_str(16);
 $key = hash('sha256', $secret_key);
 $iv = substr(hash('sha256', $secret_iv), 0, 16);
 
-
 if (isset($_POST['submit'])) 
 {
 	$ipwd = mysqli_real_escape_string($con, $_POST['ipwd']);
@@ -32,6 +42,7 @@ if (isset($_POST['submit']))
 	$iname = mysqli_real_escape_string($con, $_POST['iname']);
 	$post_contact = mysqli_real_escape_string($con, $_POST['icontact']);
 	$iemail = mysqli_real_escape_string($con, $_POST['iemail']);
+
 	$icontact = encrypt_decrypt('encrypt', $post_contact, $key, $iv);
 
 	function cleanData($data)
@@ -47,7 +58,7 @@ if (isset($_POST['submit']))
 
 	cleanData($ipwd);
 	cleanData($iname);
-	cleanData($icontact);
+	//cleanData($icontact);
 	cleanData($iemail);
 	cleanData($icpwd);
 
@@ -57,7 +68,7 @@ if (isset($_POST['submit']))
 	}
 	
 	else {		
-	
+		
 		if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$iemail))
 		{
     		$emailerror= "Email is not valid";
@@ -81,22 +92,21 @@ if (isset($_POST['submit']))
     	if (!preg_match("/^[a-zA-Z]*$/",$iname)) 
 		{
      		$nameerror = "*Only letters and white space allowed for name"; 
-		}
-		
+    	}
+
     	//if (preg_match("/\D/",$icontact))
 		//{
-    	//	$contacterror= "Please insert a 8 digit number";
+    		//$contacterror= "Please insert a 8 digit number";
 		//}
     			
 		else 
 		{		
-			$sql="SELECT * FROM useraccount WHERE USERNAME='$iemail'";
+			$sql="SELECT * FROM useraccount WHERE email='$iemail'";
 			$result=mysqli_query($con, $sql);
-			$count = mysqli_num_rows($result);
-
+			$count = mysqli_num_rows($result);		
 			if($count >= 1)
 			{
-				$usernameexisterror= "Userame already exists";
+				$usernameexisterror= "Username already exists";
 			}
 
 			else
@@ -174,7 +184,8 @@ $con->close();
 </form>
 </table>
 
-<center><p><?php echo $error_message; ?></p></center>
+<center><p><?php echo $error_message; ?><?php echo $usernameexisterror; ?></p></center>
+
 <center><input type="button" value="Back" onclick="window.location.href='main_login.php'" /></center>
 
 </body>

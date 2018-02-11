@@ -16,10 +16,9 @@ if ($otpsession != 1)
 {
     header("location:otp.php");
 }
-require 'connect.php';
+include("connect.php");
 $User=$_SESSION['login_user'];
 $result=mysqli_query($con, "SELECT * FROM useraccount where email='$User'");
-
 ?>
 
 <?php
@@ -139,6 +138,7 @@ if (isset($_POST['submit1']))
     }
 }
 ?>
+<br>
 <b><center>UPDATE PASSWORD</center></b>
 	<form action="profile.php" method="post">
 	<table align="center" border=0>
@@ -198,12 +198,7 @@ if (isset($_POST['submit1']))
  
                 </form>      
             </td>
-            <td><form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
-                    <input type="text" name="icontact" value=<?php echo $useraccount->contact; ?>  >
-                    <input type="submit" value="update" >
- 
-            </form>
-            </td>
+            <td><?php echo $useraccount->contact; ?></td>
             <td><form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
                     <input type="text" name="iAddress1" value= <?php echo $useraccount->address1; ?>  >
                     <input type="submit" value="update" >
@@ -238,6 +233,7 @@ if (isset($_POST['submit1']))
         </tr>
 
 	<?php } ?>
+</table>
 <br><br><br>
 
 <br>

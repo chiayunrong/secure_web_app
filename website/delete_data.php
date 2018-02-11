@@ -3,6 +3,15 @@
 <b><center>DELETE MY DATA</center></b>
 
 <?php
+if ( $_SERVER['REQUEST_METHOD']=='GET' && realpath(__FILE__) == realpath( $_SERVER['SCRIPT_FILENAME'] ) ) 
+{
+    
+    header( 'HTTP/1.0 403 Forbidden', TRUE, 403 );
+
+    die( header( 'location: redirect_home.php' ) );
+
+}
+
 session_start();
 if(!isset($_SESSION['login_user'])) //check if you are in a session, if not redirect to login page
 {
