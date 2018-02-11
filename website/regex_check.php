@@ -49,7 +49,7 @@ function checkAlphaNumSpecial($string){
 }
 
 function checkEmail($string){
-        if (preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$string) && strpos($string, ' ') === False){
+        if (preg_match('/^[ A-Za-z0-9@.]*$/', $string) && strpos($string, ' ') === False){
             return True;
         }
         else {

@@ -30,5 +30,8 @@ if(isset($_POST['email']) && !empty($_POST['email']) && checkEmail($email)){
 		echo "Email does not exist in database";
 	}
 }
+else{
+    echo "Please enter your email";
+}
 
 ?>
