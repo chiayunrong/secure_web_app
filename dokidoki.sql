@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 11, 2018 at 11:42 AM
+-- Generation Time: Feb 11, 2018 at 02:57 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -267,7 +267,34 @@ INSERT INTO `audit_log` (`id`, `comment`, `new_value`, `datetime`, `operation`, 
 (267, NULL, 'aosdkaosdk', '2018-02-11 18:42:29', 'has been deleted.', 'User'),
 (268, NULL, 'asdsadlj', '2018-02-11 18:42:29', 'has been deleted.', 'User'),
 (269, NULL, 'asdasd', '2018-02-11 18:42:29', 'has been deleted.', 'User'),
-(270, NULL, 'test@localhost', '2018-02-11 18:42:35', 'has been deleted.', 'User');
+(270, NULL, 'test@localhost', '2018-02-11 18:42:35', 'has been deleted.', 'User'),
+(271, NULL, 'yunrongc@gmail.com', '2018-02-11 20:14:44', 'details has been updated.', 'User'),
+(272, NULL, 'yunrongc@gmail.com', '2018-02-11 20:15:06', ' attempted to log in', 'login attempt'),
+(273, NULL, 'yunrongc@gmail.com', '2018-02-11 20:15:06', 'logged in', 'Login'),
+(274, NULL, 'yunrongc@gmail.com', '2018-02-11 21:13:01', 'details has been updated.', 'User'),
+(275, NULL, 'yunrongc@gmail.com', '2018-02-11 21:18:20', 'has logged out', 'Logout'),
+(276, NULL, 'a@a.com', '2018-02-11 21:18:52', 'has registered.', 'User'),
+(277, NULL, 'a@a.com', '2018-02-11 21:19:08', ' attempted to log in', 'login attempt'),
+(278, NULL, 'a@a.com', '2018-02-11 21:19:08', 'logged in', 'Login'),
+(279, NULL, 'a@a.com', '2018-02-11 21:46:35', 'details has been updated.', 'User'),
+(280, NULL, 'a@a.com', '2018-02-11 21:46:43', 'has logged out', 'Logout'),
+(281, NULL, 'a@a', '2018-02-11 21:46:52', ' attempted to log in', 'login attempt'),
+(282, NULL, 'a@a.com', '2018-02-11 21:47:13', ' attempted to log in', 'login attempt'),
+(283, NULL, 'b@b.com', '2018-02-11 21:47:26', 'has registered.', 'User'),
+(284, NULL, 'b@b.com', '2018-02-11 21:47:37', ' attempted to log in', 'login attempt'),
+(285, NULL, 'b@b.com', '2018-02-11 21:47:37', 'logged in', 'Login'),
+(286, NULL, 'b@b.com', '2018-02-11 21:49:17', 'details has been updated.', 'User'),
+(287, NULL, 'b@b.com', '2018-02-11 21:49:28', 'has logged out', 'Logout'),
+(288, NULL, 'b@b.com', '2018-02-11 21:49:40', ' attempted to log in', 'login attempt'),
+(289, NULL, 'b@b.com', '2018-02-11 21:49:40', 'logged in', 'Login'),
+(290, NULL, 'b@b.com', '2018-02-11 21:50:50', 'has logged out', 'Logout'),
+(291, NULL, 'endy@aaa.com', '2018-02-11 21:51:18', 'has registered.', 'User'),
+(292, NULL, 'endy@aaa.com', '2018-02-11 21:51:28', ' attempted to log in', 'login attempt'),
+(293, NULL, 'endy@aaa.com', '2018-02-11 21:51:29', 'logged in', 'Login'),
+(294, NULL, 'endy@aaa.com', '2018-02-11 21:51:59', 'details has been updated.', 'User'),
+(295, NULL, 'endy@aaa.com', '2018-02-11 21:52:16', 'has logged out', 'Logout'),
+(296, NULL, 'endy@aaa.com', '2018-02-11 21:52:26', ' attempted to log in', 'login attempt'),
+(297, NULL, 'endy@aaa.com', '2018-02-11 21:52:26', 'logged in', 'Login');
 
 -- --------------------------------------------------------
 
@@ -419,18 +446,22 @@ CREATE TABLE `useraccount` (
   `postalcode` int(6) DEFAULT NULL,
   `iv` varchar(500) NOT NULL,
   `secretkey` varchar(500) NOT NULL,
-  `password_token` varchar(500) NOT NULL
+  `password_token` varchar(500) NOT NULL,
+  `googletoken` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `useraccount`
 --
 
-INSERT INTO `useraccount` (`userid`, `email`, `password`, `name`, `contact`, `role`, `address1`, `address2`, `city`, `state`, `postalcode`, `iv`, `secretkey`, `password_token`) VALUES
-(37, 'ihatemyself481@gmail.com', '$2y$10$EJ9PcsWfHADgb0fSrE36reaqJBarzPshbIdpJFCw02xbETAgL14j.', 'a', 'TlpsZXNFYTc4K1BmSS94dlA4Rzdwdz09', 'auditor', NULL, NULL, NULL, NULL, NULL, '7af0d56d9bf2d52f', 'e6e749e59cb072c360224a0c3634b59dd843b533a6916814aa9b9909699bd0ea', ''),
-(39, 'keeruitao@gmail.com', '$2y$10$4GbhmLwjYGo5oSoibs52Pe7/2tx75q4Lr528BfFuMjPcGKf1dQKNC', 'ruitao', 'WTJOM0ZlVi9sWXE4NkJKUUYvU2lCZz09', 'user', NULL, NULL, NULL, NULL, NULL, '7f3edcfaf515d385', 'f90ff5a60b555b4a97abde55302f515f564ffcb67ec54374941d370123a5a03b', ''),
-(40, 'yunrongc@gmail.com', '$2y$10$siOyiCBlATdKnjSCE02snuCl8O8Butkx0M/CXSrBWzcHLPBj6/Ktq', 'a', 'ZnZjSE1VZjZqSE5naFZzR0NhR0JDZz09', 'manager', NULL, NULL, NULL, NULL, NULL, '980f1de1b721f366', '74ca49482c1378d04fe09c13724213d91da974c9afc45b56e7d523414451812f', ''),
-(41, 'adrielkoh@yahoo.com.sg', '$2y$10$V07wOxSioGaZsslmafYpjO/wqkOEI1ukKqAkH/2Kz0o043pVX4Pxi', 'Aids', 'cmxpVmRSNWJWKzNLcllrNHFxdUExZz09', 'admin', NULL, NULL, NULL, NULL, NULL, 'd4667ee1f21fa3e3', '44e665f85fc5d79674fb9099c6cf50e6e533a9350e33dc37f1dd5b40d8b46d47', '');
+INSERT INTO `useraccount` (`userid`, `email`, `password`, `name`, `contact`, `role`, `address1`, `address2`, `city`, `state`, `postalcode`, `iv`, `secretkey`, `password_token`, `googletoken`) VALUES
+(37, 'ihatemyself481@gmail.com', '$2y$10$EJ9PcsWfHADgb0fSrE36reaqJBarzPshbIdpJFCw02xbETAgL14j.', 'a', 'TlpsZXNFYTc4K1BmSS94dlA4Rzdwdz09', 'auditor', NULL, NULL, NULL, NULL, NULL, '7af0d56d9bf2d52f', 'e6e749e59cb072c360224a0c3634b59dd843b533a6916814aa9b9909699bd0ea', '', ''),
+(39, 'keeruitao@gmail.com', '$2y$10$4GbhmLwjYGo5oSoibs52Pe7/2tx75q4Lr528BfFuMjPcGKf1dQKNC', 'ruitao', 'WTJOM0ZlVi9sWXE4NkJKUUYvU2lCZz09', 'user', NULL, NULL, NULL, NULL, NULL, '7f3edcfaf515d385', 'f90ff5a60b555b4a97abde55302f515f564ffcb67ec54374941d370123a5a03b', '', ''),
+(40, 'yunrongc@gmail.com', '$2y$10$siOyiCBlATdKnjSCE02snuCl8O8Butkx0M/CXSrBWzcHLPBj6/Ktq', 'a', 'ZnZjSE1VZjZqSE5naFZzR0NhR0JDZz09', 'user', NULL, NULL, NULL, NULL, NULL, '980f1de1b721f366', '74ca49482c1378d04fe09c13724213d91da974c9afc45b56e7d523414451812f', '', 'OZXEJQIG4A4VWNQX'),
+(41, 'adrielkoh@yahoo.com.sg', '$2y$10$V07wOxSioGaZsslmafYpjO/wqkOEI1ukKqAkH/2Kz0o043pVX4Pxi', 'Aids', 'cmxpVmRSNWJWKzNLcllrNHFxdUExZz09', 'admin', NULL, NULL, NULL, NULL, NULL, 'd4667ee1f21fa3e3', '44e665f85fc5d79674fb9099c6cf50e6e533a9350e33dc37f1dd5b40d8b46d47', '', ''),
+(49, 'a@a.com', '$2y$10$ymOMHoafi8otKhF/PO4p6ejLAZV5ZtBRuJmzTB3svH.dPh8.pmF/S', 'a', 'akZuTDZZY1IzNEUzMXRZcXRCK0ZYQT09', 'user', NULL, NULL, NULL, NULL, NULL, '06ebea79c2661cc4', '299e8dabc2d0066c7d268e02550543f64fe133b2a6760e91d862de9a8693c44e', '', 'W54WBR4M3EG34SIJ'),
+(50, 'b@b.com', '$2y$10$IDvCwVBZGzZkajJ3Q3HsJOlgbs0Aw7W5E.3ZGsedkJW7yeO/wJyKO', 'a', 'a0xUY0RBYkFXYWhaOXJybE5ZTDlIZz09', 'user', NULL, NULL, NULL, NULL, NULL, 'd80fed4e5dac41b6', '01b89362c6b86ef3170123c413cbbd380cc207a8e9883808fd2b1ed8bcd4a153', '', 'LFBJLJJGGTVFJO2R'),
+(51, 'endy@aaa.com', '$2y$10$hcb/Ri9nf1yBE110W07lI.Sr6WgJ3uh9WgNxOSssj11apo4iw/iPO', 'a', 'cUUyanpkSGFHa3d1SCtvOUlrTVVhZz09', 'user', NULL, NULL, NULL, NULL, NULL, '9a8c38ffc174950b', 'e43ec90550739b56d58d3edcf944e067d273c53c494bdaa6b1873201a39039fc', '', 'THSDOD54BY6K455U');
 
 --
 -- Triggers `useraccount`
@@ -497,7 +528,7 @@ ALTER TABLE `useraccount`
 -- AUTO_INCREMENT for table `audit_log`
 --
 ALTER TABLE `audit_log`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=271;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=298;
 
 --
 -- AUTO_INCREMENT for table `customerorders`
@@ -515,7 +546,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `useraccount`
 --
 ALTER TABLE `useraccount`
-  MODIFY `userid` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `userid` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- Constraints for dumped tables

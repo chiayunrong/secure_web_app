@@ -8,6 +8,8 @@
 
 include("connect.php");
 include("cipher.php");
+include("google_auth/GoogleAuthenticator.php");
+include("google_auth/FixedBitNotation.php");
 
 $error_message = "";
 $error_input = "";
@@ -15,6 +17,8 @@ $usernameexisterror = "";
 
 $secret_key = random_str(32);
 $secret_iv = random_str(16);
+$g = new \Google\Authenticator\GoogleAuthenticator();
+$secret_tok = $g->generateSecret();
 
 // hash
 $key = hash('sha256', $secret_key);
@@ -70,13 +74,13 @@ if (isset($_POST['submit']))
 
 			else
 			{	
-				$query1= $con->prepare("INSERT INTO `useraccount` (`USERID`, `EMAIL`,`PASSWORD`, `NAME`, `CONTACT`, `ROLE`, `iv`, `secretkey`) VALUES (NULL, ?,?,?,?,?,?,?)");
+				$query1= $con->prepare("INSERT INTO `useraccount` (`USERID`, `EMAIL`,`PASSWORD`, `NAME`, `CONTACT`, `ROLE`, `iv`, `secretkey`, `googletoken`) VALUES (NULL, ?,?,?,?,?,?,?,?)");
 				$pwd = password_hash($ipwd, PASSWORD_BCRYPT);
 				$name = $iname;
 				$contact = $icontact;
 				$role = "user";
 				$email = $iemail;
-				$query1->bind_param('sssssss', $email, $pwd, $name, $contact, $role, $iv, $key); //bind the parameters
+				$query1->bind_param('ssssssss', $email, $pwd, $name, $contact, $role, $iv, $key, $secret_tok); //bind the parameters
 		
 				if ($query1->execute())
 					{   //execute query

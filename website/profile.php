@@ -26,9 +26,12 @@ $result=mysqli_query($con, "SELECT * FROM useraccount where email='$User'");
 $iusername = $_SESSION['login_user'];
 include("connect.php");
 include("cipher.php");
-$query=$con->prepare("SELECT `email`, `name`, `contact`, `address1`, `address2`, `city`, `state`, `postalcode`, `iv`, `secretkey` FROM useraccount WHERE email='$iusername'"); //print out the user information table
+include("regex_check.php");
+include("google_auth/GoogleAuthenticator.php");
+include("google_auth/FixedBitNotation.php");
+$query=$con->prepare("SELECT `email`, `name`, `contact`, `address1`, `address2`, `city`, `state`, `postalcode`, `iv`, `secretkey`, `googletoken` FROM useraccount WHERE email='$iusername'"); //print out the user information table
 $query->execute();
-$query->bind_result($email, $name, $contact, $address1, $address2, $city, $state, $postalcode, $iv, $key);
+$query->bind_result($email, $name, $contact, $address1, $address2, $city, $state, $postalcode, $iv, $key, $googletok);
 $output_pass = "*******"; // Do not show password, can be changed by commenting out this line
 $icontact = encrypt_decrypt('decrypt', $contact, $key, $iv);
 echo $icontact;
@@ -67,6 +70,7 @@ if (isset($_POST['submit1']))
 	$opwd = mysqli_real_escape_string($con, $_POST['opwd']);
 	$ipwd = mysqli_real_escape_string($con, $_POST['ipwd']);
 	$icpwd = mysqli_real_escape_string($con, $_POST['icpwd']);
+	$otptoken = mysqli_real_escape_string($con, $_POST['otptoken']);
 
 	function cleanData($data)
     {
@@ -82,8 +86,9 @@ if (isset($_POST['submit1']))
     cleanData($opwd);
     cleanData($ipwd);
     cleanData($icpwd);
+    cleanData($otptoken);
 
-    if (empty($opwd) || empty($ipwd) || empty($icpwd))
+    if (empty($opwd) || empty($ipwd) || empty($icpwd || emtpy($otptoken)))
     {
     	$error_message="Please fill up all fields!";
     }
@@ -96,32 +101,48 @@ if (isset($_POST['submit1']))
 			$passinputerror= "Password error";
 		}
 
+		else if(!checkNum($otptoken))
+		{
+			echo "Only Numbers Accepted for OTP";
+		}
 		else
 		{
-			$sql ="SELECT password FROM useraccount WHERE email = '$User'";
-			$result = $con->query($sql);
-			while($row=$result->fetch_assoc())
-			{
-				$currentpassword = $row['password'];
+			$g = new \Google\Authenticator\GoogleAuthenticator();
+			$checktoken = $g->getCode($googletok);
+			if($checktoken == $otptoken){
+				echo "test3";
+				$sql ="SELECT password FROM useraccount WHERE email = '$User'";
+				$result = $con->query($sql);
+				while($row=$result->fetch_assoc())
+				{
+					$currentpassword = $row['password'];
+				}
+
+	    		if(password_verify($opwd, $currentpassword))
+	    		{	
+					$pwd = password_hash($ipwd, PASSWORD_BCRYPT);
+					$sql="UPDATE useraccount SET password= '$pwd' WHERE email='$User'";
+					if ($con->query($sql) === TRUE)
+						{   //execute query
+	  						echo "<center>Password Updated!</center> <br>";
+						}
+					else
+						{
+	  						echo "<center>Error has occured</center> <br>";
+						}
+	    		}
+	    		else
+	    		{
+	    			$wrongpasserror = "Old password not correct!";
+	    		}
+
+			}
+			else{
+				echo "OTP entered incorrectly";
 			}
 
-    		if(password_verify($opwd, $currentpassword))
-    		{	
-				$pwd = password_hash($ipwd, PASSWORD_BCRYPT);
-				$sql="UPDATE useraccount SET password= '$pwd' WHERE email='$User'";
-				if ($con->query($sql) === TRUE)
-					{   //execute query
-  						echo "<center>Password Updated!</center> <br>";
-					}
-				else
-					{
-  						echo "<center>Error has occured</center> <br>";
-					}
-    		}
-    		else
-    		{
-    			$wrongpasserror = "Old password not correct!";
-    		}
+
+
 
 		}
     }
@@ -144,6 +165,11 @@ if (isset($_POST['submit1']))
 	<tr>
 	<td>Confirm New Password:</td>
 	<td><input type="password" name="icpwd" /></td>
+	</tr>
+
+	<tr>
+	<td>Google OTP:</td>
+	<td><input type="text" name="otptoken" /></td>
 	</tr>
 
 	<tr>
@@ -182,43 +208,43 @@ if (isset($_POST['submit1']))
             <td>
             	<?php echo $useraccount->email; ?>
             </td>
-            <td> <form action="profileupdate.php" method="POST"> 
+            <td> <form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
                     <input type="text" name="iName" >
                     <input type="submit" value="update" >
  
                 </form>      
             </td>
-            <td><form action="profileupdate.php" method="POST"> 
+            <td><form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
                     <input type="text" name="icontact" >
                     <input type="submit" value="update" >
  
             </form>
             </td>
-            <td><form action="profileupdate.php" method="POST"> 
+            <td><form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
                     <input type="text" name="iAddress1"   >
                     <input type="submit" value="update" >
  
             </form>
         	</td>
-			<td><form action="profileupdate.php" method="POST"> 
+			<td><form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
                     <input type="text" name="iAddress2" >
                     <input type="submit" value="update" >
  
                 </form>
             </td>
-			<td><form action="profileupdate.php" method="POST"> 
+			<td><form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
                     <input type="text" name="iCity" >
                     <input type="submit" value="update" >
  
                 </form>
             </td>
-			<td><form action="profileupdate.php" method="POST"> 
+			<td><form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
                     <input type="text" name="iState"  >
                     <input type="submit" value="update" >
  
                 </form>
             </td>
-			<td><form action="profileupdate.php" method="POST"> 
+			<td><form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
                     <input type="text" name="iPostalcode"   >
                     <input type="submit" value="update" >
  
@@ -232,7 +258,24 @@ if (isset($_POST['submit1']))
 <br><br><br>
 
 <br>
+<center>Set Up Google Auth <br>
+<?php
+//include("google_auth/GoogleAuthenticator.php");
+//include("google_auth/FixedBitNotation.php");
 
+$g = new \Google\Authenticator\GoogleAuthenticator();
+//$salt = '7WAO342QFANY6IKBF7L7SWEUU79WL3VMT920VB5NQMW';
+//$googlesecret = $salt.$iv;
+//$secret = 'XVQ2UIGO75XRUKJO';
+
+//$secret = $g->generateSecret();
+//echo $g->getCode($secret);
+//echo $googletok;
+//mysqli_query($con, "UPDATE useraccount SET googletoken = '$secret' WHERE email='$iusername'");
+echo '<img src="'.$g->getURL('DokiDoki', 'example.com', $googletok).'" />';
+//echo \Google\Authenticator\GoogleQrUrl::generate('chregu', $secret, 'GoogleAuthenticatorExample');
+?>
+</center>
 <b><center>DELETE ACCOUNT</center></b> <!-allow user to delete their account and end the session->
 	<form action="delete_data.php" method="post">
 	<table align="center" border=0>
