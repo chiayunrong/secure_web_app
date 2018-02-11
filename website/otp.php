@@ -62,7 +62,7 @@ $iusername=$_SESSION['login_user'];
 
 echo "<br>";
 $otpcheck=$_SESSION['secretpassword'];
-echo $otpcheck; //to make life easier if you do not want to check email everytime
+//echo $otpcheck; //to make life easier if you do not want to check email everytime
 echo "<br>";
 if (isset($_POST['submit'])) 
 { 
