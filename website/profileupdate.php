@@ -1,5 +1,6 @@
 <?php 
 require 'connect.php';
+include("cipher.php");
 
 $email = $_GET['email'];
 function cleanData($data)
@@ -50,6 +51,23 @@ else
 	}
 }
 
+if(isset($_POST['icontact']))
+{
+
+	$secret_key = random_str(32);
+	$secret_iv = random_str(16);
+	
+	// hash
+	$key = hash('sha256', $secret_key);
+	$iv = substr(hash('sha256', $secret_iv), 0, 16);
+
+	$icontact = $_POST['icontact'];
+	$encrypted_contact = encrypt_decrypt('encrypt', $icontact, $key, $iv);
+	$query = $con->prepare("UPDATE `useraccount` SET `contact`= '$encrypted_contact' WHERE email='$email'");
+	$query->execute();
+	echo "contact added";
+
+}
 if(isset($_POST['iAddress2']))
 {
 
