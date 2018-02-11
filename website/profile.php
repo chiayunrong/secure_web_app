@@ -182,43 +182,43 @@ if (isset($_POST['submit1']))
             <td>
             	<?php echo $useraccount->email; ?>
             </td>
-            <td> <form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
+            <td> <form action="profileupdate.php" method="POST"> 
                     <input type="text" name="iName" >
                     <input type="submit" value="update" >
  
                 </form>      
             </td>
-            <td><form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
+            <td><form action="profileupdate.php" method="POST"> 
                     <input type="text" name="icontact" >
                     <input type="submit" value="update" >
  
             </form>
             </td>
-            <td><form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
+            <td><form action="profileupdate.php" method="POST"> 
                     <input type="text" name="iAddress1"   >
                     <input type="submit" value="update" >
  
             </form>
         	</td>
-			<td><form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
+			<td><form action="profileupdate.php" method="POST"> 
                     <input type="text" name="iAddress2" >
                     <input type="submit" value="update" >
  
                 </form>
             </td>
-			<td><form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
+			<td><form action="profileupdate.php" method="POST"> 
                     <input type="text" name="iCity" >
                     <input type="submit" value="update" >
  
                 </form>
             </td>
-			<td><form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
+			<td><form action="profileupdate.php" method="POST"> 
                     <input type="text" name="iState"  >
                     <input type="submit" value="update" >
  
                 </form>
             </td>
-			<td><form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
+			<td><form action="profileupdate.php" method="POST"> 
                     <input type="text" name="iPostalcode"   >
                     <input type="submit" value="update" >
  

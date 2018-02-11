@@ -18,7 +18,7 @@ if ($otpsession != 1)
     header("location:otp.php");
 }
 
-$email = $_GET['email'];
+$email = $_SESSION['login_user'];
 function cleanData($data)
     {
         //$data=mysqli_real_escape_string($con, $data);
@@ -52,20 +52,25 @@ else
 
 if(isset($_POST['icontact']))
 {
-
+	$icontact = $_POST['icontact'];
+	if (!preg_match('/^[0-9]+$/', $icontact))
+	{
+		echo "only numbers accepted!";
+	}
+	else
+	{
 	$secret_key = random_str(32);
 	$secret_iv = random_str(16);
-	
 	// hash
 	$key = hash('sha256', $secret_key);
 	$iv = substr(hash('sha256', $secret_iv), 0, 16);
 
-	$icontact = $_POST['icontact'];
+	
 	$encrypted_contact = encrypt_decrypt('encrypt', $icontact, $key, $iv);
 	$query = $con->prepare("UPDATE `useraccount` SET `contact`= '$encrypted_contact', `secretkey`= '$key', `iv` = '$iv' WHERE email='$email'");
 	$query->execute();
 	echo "contact added";
-
+	}
 }
 
 if(isset($_POST['iAddress1']))
