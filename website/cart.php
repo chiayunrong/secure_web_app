@@ -4,6 +4,7 @@ require 'connect.php';
 require 'item.php';
 
 if(isset($_GET['productid']) && !isset($_POST['update'])){
+    
     $result = mysqli_query($con, 'SELECT * FROM product WHERE productid='.$_GET['productid']);
     $product = mysqli_fetch_object($result);
     $item = new Item();

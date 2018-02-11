@@ -22,3 +22,4 @@ Enter your new password <br>
 <input type="password" name="ipwd"> <br>
 <input type="submit" name="submit" value="Submit">
 </form></center>
+<a href="main_login.php">Back </a>

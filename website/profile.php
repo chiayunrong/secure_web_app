@@ -171,6 +171,68 @@ if (isset($_POST['submit1']))
 <center><?php echo $passerror ?></center>
 <center><?php echo $error_message ?></center>
 
+<b><center>UPDATE ACCOUNT DETAILS</center></b> 
+<table align='center' border='1'>
+<tr>
+        <th>Email</th>
+        <th>Name</th>
+        <th>Contact</th>
+        <th>Address1</th>
+        <th>Address2</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Postal Code</th>
+
+ </tr>
+<?php while($useraccount = mysqli_fetch_object($result)) 
+	{?>
+		    <tr>
+            <td>
+            	<?php echo $useraccount->email; ?>
+            </td>
+            <td> <form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
+                    <input type="text" name="iName" value= <?php echo $useraccount->name; ?>  >
+                    <input type="submit" value="update" >
+ 
+                </form>      
+            </td>
+            <td><?php echo $useraccount->contact; ?></td>
+            <td><form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
+                    <input type="text" name="iAddress1" value= <?php echo $useraccount->address1; ?>  >
+                    <input type="submit" value="update" >
+ 
+            </form>
+        	</td>
+			<td><form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
+                    <input type="text" name="iAddress2" value= <?php echo $useraccount->address2; ?>  >
+                    <input type="submit" value="update" >
+ 
+                </form>
+            </td>
+			<td><form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
+                    <input type="text" name="iCity" value= <?php echo $useraccount->city; ?>  >
+                    <input type="submit" value="update" >
+ 
+                </form>
+            </td>
+			<td><form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
+                    <input type="text" name="iState" value= <?php echo $useraccount->state; ?>  >
+                    <input type="submit" value="update" >
+ 
+                </form>
+            </td>
+			<td><form action="profileupdate.php?email=<?php echo $useraccount->email;?>" method="POST"> 
+                    <input type="text" name="iPostalcode" value= <?php echo $useraccount->postalcode; ?>  >
+                    <input type="submit" value="update" >
+ 
+                </form>
+            </td>
+            
+        </tr>
+
+	<?php } ?>
+<br><br><br>
+
 <br>
 
 <b><center>DELETE ACCOUNT</center></b> <!-allow user to delete their account and end the session->
