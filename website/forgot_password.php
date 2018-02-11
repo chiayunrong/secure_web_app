@@ -5,7 +5,8 @@ include("regex_check.php");
 include("cipher.php");
 $email = $_POST['email'];
 
-if(isset($_POST) && !empty($_POST) && checkEmail($email)){
+if(isset($_POST['email']) && !empty($_POST['email']) && checkEmail($email)){
+	echo "Test";
 	$sql = "SELECT * FROM `useraccount` WHERE email = '$email'";
 	$res = mysqli_query($con, $sql);
 	$count = mysqli_num_rows($res);

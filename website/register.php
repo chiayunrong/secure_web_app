@@ -54,8 +54,8 @@ if (isset($_POST['submit']))
 	}
 	
 	else {		
-		
-		if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$iemail) || $ipwd != $icpwd || !preg_match("/^[^\"']*$/", $ipwd) || !preg_match("/^[^\"']*$/", $icpwd) || !preg_match("/^[a-zA-Z]*$/",$iname) || preg_match("/\D/",$post_contact))
+		//!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$iemail) || 
+		if ($ipwd != $icpwd || !preg_match("/^[^\"']*$/", $ipwd) || !preg_match("/^[^\"']*$/", $icpwd) || !preg_match("/^[a-zA-Z]*$/",$iname) || preg_match("/\D/",$post_contact))
 		{
     		$error_input= "You have entered an invalid input";
 		}
