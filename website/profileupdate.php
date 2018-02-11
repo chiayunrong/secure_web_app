@@ -63,6 +63,11 @@ if(isset($_POST['icontact']))
 	$icontact = $_POST['icontact'];
 	cleanData($icontact);
 	if(preg_match("/\D/",$icontact))
+	{	
+		echo "Only numbers are allowed";
+
+	}
+	else
 	{
 		$encrypted_contact = encrypt_decrypt('encrypt', $icontact, $key, $iv);
 		$query = $con->prepare("UPDATE `useraccount` SET `contact`= '$encrypted_contact', `secretkey`= '$key', `iv` = '$iv' WHERE email='$email'");
