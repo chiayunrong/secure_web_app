@@ -7,6 +7,7 @@
 //error_reporting(0);
 
 include("connect.php");
+include("cipher.php");
 
 $error_message = "";
 $emailerror = "";
@@ -16,6 +17,12 @@ $cpassinputerror = "";
 $nameerror = "";
 $contacterror = "";
 
+$secret_key = random_str(32);
+$secret_iv = random_str(16);
+
+// hash
+$key = hash('sha256', $secret_key);
+$iv = substr(hash('sha256', $secret_iv), 0, 16);
 
 
 if (isset($_POST['submit'])) 
@@ -23,8 +30,9 @@ if (isset($_POST['submit']))
 	$ipwd = mysqli_real_escape_string($con, $_POST['ipwd']);
 	$icpwd= mysqli_real_escape_string($con, $_POST['icpwd']);
 	$iname = mysqli_real_escape_string($con, $_POST['iname']);
-	$icontact = mysqli_real_escape_string($con, $_POST['icontact']);
+	$post_contact = mysqli_real_escape_string($con, $_POST['icontact']);
 	$iemail = mysqli_real_escape_string($con, $_POST['iemail']);
+	$icontact = encrypt_decrypt('encrypt', $post_contact, $key, $iv);
 
 	function cleanData($data)
     {
@@ -73,19 +81,19 @@ if (isset($_POST['submit']))
     	if (!preg_match("/^[a-zA-Z]*$/",$iname)) 
 		{
      		$nameerror = "*Only letters and white space allowed for name"; 
-    	}
-
-    	if (preg_match("/\D/",$icontact))
-		{
-    		$contacterror= "Please insert a 8 digit number";
 		}
+		
+    	//if (preg_match("/\D/",$icontact))
+		//{
+    	//	$contacterror= "Please insert a 8 digit number";
+		//}
     			
 		else 
 		{		
 			$sql="SELECT * FROM useraccount WHERE USERNAME='$iemail'";
 			$result=mysqli_query($con, $sql);
 			$count = mysqli_num_rows($result);
-					
+
 			if($count >= 1)
 			{
 				$usernameexisterror= "Userame already exists";
@@ -93,13 +101,13 @@ if (isset($_POST['submit']))
 
 			else
 			{	
-				$query1= $con->prepare("INSERT INTO `useraccount` (`USERID`, `EMAIL`,`PASSWORD`, `NAME`, `CONTACT`, `ROLE`) VALUES (NULL, ?,?,?,?,?)");
+				$query1= $con->prepare("INSERT INTO `useraccount` (`USERID`, `EMAIL`,`PASSWORD`, `NAME`, `CONTACT`, `ROLE`, `iv`, `secretkey`) VALUES (NULL, ?,?,?,?,?,?,?)");
 				$pwd = password_hash($ipwd, PASSWORD_BCRYPT);
 				$name = $iname;
 				$contact = $icontact;
 				$role = "user";
 				$email = $iemail;
-				$query1->bind_param('sssss', $email, $pwd, $name, $contact, $role); //bind the parameters
+				$query1->bind_param('sssssss', $email, $pwd, $name, $contact, $role, $iv, $key); //bind the parameters
 		
 				if ($query1->execute())
 					{   //execute query

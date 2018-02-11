@@ -5,39 +5,39 @@
 <table align="center" border="0">
 <tr>
 <td>Email:</td>
-<td><input type="text" name="email" /></td>
+<td><input type="text" required="required" name="email" /></td>
 </tr>
 <tr>
 <td>Password:</td>
-<td><input type="text" name="password" /></td>
+<td><input type="text" required="required" name="password" /></td>
 </tr>
 <tr>
 <td>Name:</td>
-<td><input type="text" name="name" /></td>
+<td><input type="text" required="required" pattern="[a-zA-Z]{1,}" name="name" /></td>
 </tr>
 <tr>
 <td>Contact:</td>
-<td><input type="text" name="contact" /></td>
+<td><input type="text" required="required" pattern="[0-9]{1,}" name="contact" /></td>
 </tr>
 <tr>
 <td>Role:</td>
-<td><input type="text" name="role" /></td>
+<td><input type="text" value="user" readonly="readonly" name="role" /></td>
 </tr>
 <tr>
 <td>Address1:</td>
-<td><input type="text" name="address1" /></td>
+<td><input type="text" required="required" name="address1" /></td>
 </tr>
 <td>Address2:</td>
 <td><input type="text" name="address2" /></td>
 </tr>
 <td>City:</td>
-<td><input type="text" name="city" /></td>
+<td><input type="text" required="required" pattern="[a-zA-Z]{1,}" name="city" /></td>
 </tr>
 <td>State:</td>
-<td><input type="text" name="state" /></td>
+<td><input type="text" required="required" pattern="[a-zA-Z]{1,}" name="state" /></td>
 </tr>
 <td>Postal Code:</td>
-<td><input type="text" name="postalcode" /></td>
+<td><input type="text" required="required" name="postalcode" /></td>
 </tr>
 <tr>
 <td>&nbsp;</td>

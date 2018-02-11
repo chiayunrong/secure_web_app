@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 10, 2018 at 11:28 AM
--- Server version: 10.1.28-MariaDB
--- PHP Version: 7.1.10
+-- Generation Time: Feb 11, 2018 at 04:41 AM
+-- Server version: 10.1.30-MariaDB
+-- PHP Version: 7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -69,7 +69,65 @@ INSERT INTO `audit_log` (`id`, `comment`, `new_value`, `datetime`, `operation`, 
 (69, NULL, 'test@gmail.com', '2018-02-10 18:12:14', ' attempted to log in', 'login attempt'),
 (70, NULL, 'test@gmail.com', '2018-02-10 18:12:14', 'logged in', 'login'),
 (71, NULL, 'test@gmail.com', '2018-02-10 18:12:16', 'has logged out', 'logout'),
-(72, NULL, 'test222@gmail.com', '2018-02-10 18:21:49', 'has registered.', 'User');
+(72, NULL, 'test222@gmail.com', '2018-02-10 18:21:49', 'has registered.', 'User'),
+(73, NULL, 'cny@gmail.com', '2018-02-10 23:53:38', 'has logged out', 'Logout'),
+(74, NULL, 'qwe@qwe.com', '2018-02-11 00:21:07', 'has registered.', 'User'),
+(75, NULL, 'qwe@qwe.com', '2018-02-11 00:21:18', ' attempted to log in', 'login attempt'),
+(76, NULL, 'qwe@qwe.com', '2018-02-11 00:21:27', ' attempted to log in', 'login attempt'),
+(77, NULL, 'qwe@qwe.com', '2018-02-11 00:21:27', 'logged in', 'Login'),
+(78, NULL, 'qwe@qwe.com', '2018-02-11 00:22:19', 'has been deleted.', 'User'),
+(79, NULL, 'qwe@qwe.com', '2018-02-11 00:22:27', 'has registered.', 'User'),
+(80, NULL, 'qwe@qwe.com', '2018-02-11 00:22:35', ' attempted to log in', 'login attempt'),
+(81, NULL, 'qwe@qwe.com', '2018-02-11 00:22:35', 'logged in', 'Login'),
+(82, NULL, 'qwe@qwe.com', '2018-02-11 00:26:58', 'has been deleted.', 'User'),
+(83, NULL, 'a@a.com', '2018-02-11 00:27:11', 'has registered.', 'User'),
+(84, NULL, 'a@a.com', '2018-02-11 00:27:19', ' attempted to log in', 'login attempt'),
+(85, NULL, 'a@a.com', '2018-02-11 00:27:20', 'logged in', 'Login'),
+(86, NULL, 'a@a.com', '2018-02-11 01:04:19', 'has logged out', 'Logout'),
+(87, NULL, 'china@gmail.com', '2018-02-11 01:04:32', 'has registered.', 'User'),
+(88, NULL, 'china@gmail.com', '2018-02-11 01:04:41', ' attempted to log in', 'login attempt'),
+(89, NULL, 'china@gmail.com', '2018-02-11 01:04:41', 'logged in', 'Login'),
+(90, NULL, 'yunrongc@gmail.com', '2018-02-11 10:13:48', 'has registered.', 'User'),
+(91, NULL, NULL, '2018-02-11 10:27:44', 'has registered.', 'User'),
+(92, NULL, 'aaa@bbb.com', '2018-02-11 10:29:45', 'has registered.', 'User'),
+(93, NULL, 'aaa@bbb.com', '2018-02-11 10:29:55', ' attempted to log in', 'login attempt'),
+(94, NULL, 'aaa@bbb.com', '2018-02-11 10:29:55', 'logged in', 'Login'),
+(95, NULL, 'aaa@bbb.com', '2018-02-11 10:32:43', 'has logged out', 'Logout'),
+(96, NULL, NULL, '2018-02-11 10:33:55', 'has registered.', 'User'),
+(97, NULL, NULL, '2018-02-11 10:34:05', 'has registered.', 'User'),
+(98, NULL, NULL, '2018-02-11 10:37:16', 'has registered.', 'User'),
+(99, NULL, 'test@localhost.com', '2018-02-11 10:44:10', 'has registered.', 'User'),
+(100, NULL, 'test@localhost', '2018-02-11 10:44:26', 'has registered.', 'User'),
+(101, NULL, NULL, '2018-02-11 10:44:29', 'has registered.', 'User'),
+(102, NULL, NULL, '2018-02-11 10:46:58', 'has registered.', 'User'),
+(103, NULL, 'test@localhost', '2018-02-11 11:09:03', 'details has been updated.', 'User'),
+(104, NULL, NULL, '2018-02-11 11:25:55', 'has registered.', 'User'),
+(105, NULL, NULL, '2018-02-11 11:28:44', 'has been deleted.', 'User'),
+(106, NULL, NULL, '2018-02-11 11:28:44', 'has been deleted.', 'User'),
+(107, NULL, NULL, '2018-02-11 11:28:44', 'has been deleted.', 'User'),
+(108, NULL, NULL, '2018-02-11 11:28:44', 'has been deleted.', 'User'),
+(109, NULL, NULL, '2018-02-11 11:28:44', 'has been deleted.', 'User'),
+(110, NULL, NULL, '2018-02-11 11:28:44', 'has been deleted.', 'User'),
+(111, NULL, NULL, '2018-02-11 11:28:44', 'has been deleted.', 'User'),
+(112, NULL, 'yunrongc@gmail.com', '2018-02-11 11:29:11', 'has been deleted.', 'User'),
+(113, NULL, 'test@gmail.com', '2018-02-11 11:29:11', 'has been deleted.', 'User'),
+(114, NULL, 'xiaoxao@hotmail.com', '2018-02-11 11:29:11', 'has been deleted.', 'User'),
+(115, NULL, 'aaa@bbb.com', '2018-02-11 11:29:11', 'has been deleted.', 'User'),
+(116, NULL, 'a@a.com', '2018-02-11 11:29:11', 'has been deleted.', 'User'),
+(117, NULL, 'test@localhost.com', '2018-02-11 11:29:11', 'has been deleted.', 'User'),
+(118, NULL, 'test222@gmail.com', '2018-02-11 11:29:11', 'has been deleted.', 'User'),
+(119, NULL, 'china@gmail.com', '2018-02-11 11:29:11', 'has been deleted.', 'User'),
+(120, NULL, 'cny@gmail.com', '2018-02-11 11:29:11', 'has been deleted.', 'User'),
+(121, NULL, 'test@mail.com', '2018-02-11 11:29:11', 'has been deleted.', 'User'),
+(122, NULL, 'test@localhost', '2018-02-11 11:30:28', 'details has been updated.', 'User'),
+(123, NULL, 'test@localhost', '2018-02-11 11:30:55', 'details has been updated.', 'User'),
+(124, NULL, 'test@localhost', '2018-02-11 11:31:44', 'details has been updated.', 'User'),
+(125, NULL, 'test@localhost', '2018-02-11 11:31:52', 'details has been updated.', 'User'),
+(126, NULL, 'test@localhost', '2018-02-11 11:34:04', 'details has been updated.', 'User'),
+(127, NULL, 'test@localhost', '2018-02-11 11:34:11', 'details has been updated.', 'User'),
+(128, NULL, 'test@localhost', '2018-02-11 11:34:18', 'details has been updated.', 'User'),
+(129, NULL, 'test@localhost', '2018-02-11 11:40:15', 'details has been updated.', 'User'),
+(130, NULL, 'test@localhost', '2018-02-11 11:40:42', 'details has been updated.', 'User');
 
 -- --------------------------------------------------------
 
@@ -190,25 +248,24 @@ CREATE TABLE `useraccount` (
   `email` varchar(50) DEFAULT NULL,
   `password` varchar(60) DEFAULT NULL,
   `name` varchar(50) DEFAULT NULL,
-  `contact` int(8) DEFAULT NULL,
+  `contact` varchar(500) DEFAULT NULL,
   `role` varchar(50) DEFAULT NULL,
   `address1` varchar(50) DEFAULT NULL,
   `address2` varchar(50) DEFAULT NULL,
   `city` varchar(50) DEFAULT NULL,
   `state` varchar(50) DEFAULT NULL,
-  `postalcode` int(6) DEFAULT NULL
+  `postalcode` int(6) DEFAULT NULL,
+  `iv` varchar(500) NOT NULL,
+  `secretkey` varchar(500) NOT NULL,
+  `password_token` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `useraccount`
 --
 
-INSERT INTO `useraccount` (`userid`, `email`, `password`, `name`, `contact`, `role`, `address1`, `address2`, `city`, `state`, `postalcode`) VALUES
-(1, 'cny@gmail.com', 'cisco123', 'dryap', 91234567, 'user', 'Tampines', 'Tampines', 'Singapore', 'Singapore', 555555),
-(5, 'test@mail.com', 'test', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(18, 'xiaoxao@hotmail.com', '$2y$10$g36aZ.bW.31t6bbxedb1yuPo5MtJbsVeXbRXr8Kw3np7jvlOfzBZO', 'xiaoxiao', 98762543, 'user', NULL, NULL, NULL, NULL, NULL),
-(19, 'test@gmail.com', '$2y$10$E4/.HsJ13sjPmUEB8sisH.rc2gdzsjU46QUZripqD6wfGPcyL07ve', 'test', 90000000, 'user', NULL, NULL, NULL, NULL, NULL),
-(20, 'test222@gmail.com', '$2y$10$QLhf7tX4Qr.JtrEsbPcZRusyL7JkHPoEtHUuAvem3yvtN0dxuVulW', 'test23', 98018293, 'user', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `useraccount` (`userid`, `email`, `password`, `name`, `contact`, `role`, `address1`, `address2`, `city`, `state`, `postalcode`, `iv`, `secretkey`, `password_token`) VALUES
+(32, 'test@localhost', '$2y$10$OkQh6mfo3c92UQzt8Qt1QeKEvOK2LYUbiQK5Bi2/ooiQcO2BGAGEi', 'a', 'THdqeENhdUpQNk8rT0s4d3l0Uk5IZz09', 'user', NULL, NULL, NULL, NULL, NULL, '8e22daf000a9689e', 'd688af45b907b099bfd796edac43686bcb8ca2f4a0e243b901f60c25dbb3b1f6', 'f7aed731bcb89f93');
 
 --
 -- Triggers `useraccount`
@@ -275,7 +332,7 @@ ALTER TABLE `useraccount`
 -- AUTO_INCREMENT for table `audit_log`
 --
 ALTER TABLE `audit_log`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
 
 --
 -- AUTO_INCREMENT for table `customerorders`
@@ -293,7 +350,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `useraccount`
 --
 ALTER TABLE `useraccount`
-  MODIFY `userid` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `userid` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- Constraints for dumped tables
