@@ -1,4 +1,5 @@
 <?php 
+error_reporting(0);
 require 'connect.php';
 session_start();
 if ( $_SERVER['REQUEST_METHOD']=='GET' && realpath(__FILE__) == realpath( $_SERVER['SCRIPT_FILENAME'] ) ) 

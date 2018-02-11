@@ -24,3 +24,5 @@ Others:
 [DONE]Password Recovery -- Yun Rong
 
 [DONE]Prevent direct url access to certain php files -- Ruitao
+
+[DONE]Google Authenticator on Mobile -- Yun Rong

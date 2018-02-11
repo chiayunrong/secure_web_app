@@ -3,8 +3,7 @@
 <body>
 <title>Register Page</title>
 <?php
-
-//error_reporting(0);
+error_reporting(0);
 
 include("connect.php");
 include("cipher.php");
