@@ -14,6 +14,7 @@ if (isset($_GET['token']) && !empty($_GET['token']))
         $ipwd = $_POST['ipwd'];
         $pwd = password_hash($ipwd, PASSWORD_BCRYPT);
         mysqli_query($con, "UPDATE `useraccount` SET `password` = '$pwd' WHERE `password_token` = '$token'");
+        echo "Password changed!";
     }
 }
 ?>

@@ -110,7 +110,6 @@ if (isset($_POST['submit1']))
 			$g = new \Google\Authenticator\GoogleAuthenticator();
 			$checktoken = $g->getCode($googletok);
 			if($checktoken == $otptoken){
-				echo "test3";
 				$sql ="SELECT password FROM useraccount WHERE email = '$User'";
 				$result = $con->query($sql);
 				while($row=$result->fetch_assoc())
