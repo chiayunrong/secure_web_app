@@ -46,7 +46,7 @@ if(isset($_POST['icontact']))
 
 	$icontact = $_POST['icontact'];
 	$encrypted_contact = encrypt_decrypt('encrypt', $icontact, $key, $iv);
-	$query = $con->prepare("UPDATE `useraccount` SET `contact`= '$encrypted_contact' WHERE email='$email'");
+	$query = $con->prepare("UPDATE `useraccount` SET `contact`= '$encrypted_contact', `secretkey`= '$key', `iv` = '$iv' WHERE email='$email'");
 	$query->execute();
 	echo "contact added";
 
