@@ -5,13 +5,10 @@ These are the various security features to be implemented on the website.
 Basic Requirements:
 
 [DONE] Password (Hash + Salted) -- Ruitao
-https://crackstation.net/hashing-security.htm
 
-2) OTP / one time password example -- Rutiao
-http://phppot.com/php/php-login-with-otp-authentication/
+[DONE] OTP / one time password example -- Ruitao
 
 [DONE] reCaptcha example -- Yun Rong
-https://www.codexworld.com/new-google-recaptcha-with-php/
 
 4) Restrict Access example --Adriel
 http://www.wmtips.com/php/simple-ways-restrict-access-webpages-using.htm
@@ -22,8 +19,9 @@ https://www.w3schools.com/php/php_cookies.asp
 
 6) Audit Log -- Endy
 
-7) Encryption -- Yun Rong
-Use mcrypt because libsodium AES 256 does not work, will update the example later.
-https://stackoverflow.com/questions/26756322/php-using-mcrypt-and-store-the-encrypted-in-mysql
+[DONE] Encryption -- Yun Rong
+Using OpenSSL AES256 because mcrypt and libsodium AES 256 does not work
 
 Others:
+
+[DONE]Password Recovery -- Yun Rong
