@@ -46,5 +46,14 @@ function checkAlphaNumSpecial($string){
         return False;
     }
 }
+
+function checkEmail($string){
+        if (preg_match('/^[ A-Za-z0-9.@]/', $string) && strpos($string, ' ') === False){
+            return True;
+        }
+        else {
+            return False;
+        }
+}
 ?>
 
