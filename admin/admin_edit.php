@@ -4,44 +4,33 @@
 <tr>
 <b><center>Update Account Information</center></b>
 <tr>
-<td>Email:</td>
-<td><input type="text" name="email" value="<?php echo $_GET['email']; ?>"/></td>
-</tr>
-<tr>
-<td>Password:</td>
-<td><input type="Password" name="password" value="<?php echo $_GET['password']; ?>"/></td>
-</tr>
 <tr>
 <td>Name:</td>
-<td><input type="text" name="name" value="<?php echo $_GET['name']; ?>"/></td>
+<td><input type="text" name="name" required="required" placeholder="Name" pattern="[a-zA-Z]{1,}" value="<?php echo $_GET['name']; ?>"/></td>
 </tr>
-<tr>
 <tr>
 <td>Contact:</td>
-<td><input type="text" name="contact" value="<?php echo $_GET['contact']; ?>"/></td>
+<td><input type="integer" name="contact" required="required" placeholder="Contact" pattern="[0-9]{1,}" value="<?php echo $_GET['contact']; ?>"/></td>
 </tr>
 <tr>
-<td>Role:</td>	
-<td><input type="text" name="role" value="<?php echo $_GET['role']; ?>"/></td>
-</tr>
 <tr>
 <td>Address1:</td>
-<td><input type="text" name="address1" value="<?php echo $_GET['address1']; ?>"/></td>
+<td><input type="text" name="address1" required="required" placeholder="Address1"  value="<?php echo $_GET['address1']; ?>"/></td>
 </tr>
 <tr>
 <td>Address2:</td>
-<td><input type="text" name="address2" value="<?php echo $_GET['address2']; ?>"/></td>
+<td><input type="text" name="address2" placeholder="Address2" value="<?php echo $_GET['address2']; ?>"/></td>
 </tr>
 <tr>
 <td>City:</td>
-<td><input type="text" name="city" value="<?php echo $_GET['city']; ?>"/></td>
+<td><input type="text" name="city" required="required" placeholder="City" value="<?php echo $_GET['city']; ?>"/></td>
 </tr>
 <tr>
 <td>State:</td>
-<td><input type="text" name="state" value="<?php echo $_GET['state']; ?>"/></td>
+<td><input type="text" name="state" placeholder="State"value="<?php echo $_GET['state']; ?>"/></td>
 </tr>
 <td>Postalcode:</td>
-<td><input type="text" name="postalcode" value="<?php echo $_GET['postalcode']; ?>"/></td>
+<td><input type="integer" name="postalcode" required="required" placeholder="PostalCode" pattern="[0-9]{1,}" value="<?php echo $_GET['postalcode']; ?>"/></td>
 </tr>
 <tr>
 <td>&nbsp;</td>
