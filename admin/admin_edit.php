@@ -23,11 +23,11 @@
 </tr>
 <tr>
 <td>City:</td>
-<td><input type="text" name="city" required="required" placeholder="City" value="<?php echo $_GET['city']; ?>"/></td>
+<td><input type="text" name="city" required="required" placeholder="City" pattern="[a-zA-Z]{1,}" value="<?php echo $_GET['city']; ?>"/></td>
 </tr>
 <tr>
 <td>State:</td>
-<td><input type="text" name="state" placeholder="State"value="<?php echo $_GET['state']; ?>"/></td>
+<td><input type="text" name="state" required="required" placeholder="State" pattern="[a-zA-Z]{1,}" value="<?php echo $_GET['state']; ?>"/></td>
 </tr>
 <td>Postalcode:</td>
 <td><input type="integer" name="postalcode" required="required" placeholder="PostalCode" pattern="[0-9]{1,}" value="<?php echo $_GET['postalcode']; ?>"/></td>
